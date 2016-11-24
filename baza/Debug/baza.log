@@ -1,5 +1,5 @@
-﻿  class.cpp
+﻿  stdafx.cpp
+  class.cpp
   baza.cpp
   Generating Code...
-  baza.vcxproj -> F:\gicior\baza\Debug\baza.exe
-  baza.vcxproj -> F:\gicior\baza\Debug\baza.pdb (Full PDB)
+  baza.vcxproj -> D:\git\baza\Debug\baza.exe
