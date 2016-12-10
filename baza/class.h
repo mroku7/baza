@@ -17,10 +17,10 @@ private:
 	string m_transmission;
 	int m_engine_size;
 	int m_year;
+	float m_value;
 
 public:
-	Data(bool);
 	Data();
-	void show();
+	
 
 };
