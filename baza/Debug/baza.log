@@ -1,5 +1,7 @@
-﻿  stdafx.cpp
-  class.cpp
+﻿  class.cpp
   baza.cpp
   Generating Code...
-  baza.vcxproj -> D:\git\baza\Debug\baza.exe
+f:\gicior\baza\baza\class.cpp(118): warning C4715: 'Data::fuel': not all control paths return a value
+f:\gicior\baza\baza\class.cpp(99): warning C4715: 'Data::body_type': not all control paths return a value
+  baza.vcxproj -> F:\gicior\baza\Debug\baza.exe
+  baza.vcxproj -> F:\gicior\baza\Debug\baza.pdb (Full PDB)
