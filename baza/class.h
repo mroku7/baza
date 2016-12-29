@@ -26,7 +26,7 @@ private:
 public:
 	Data();
 	Data(string, string, char, char, char, int, int, int);
-	void save_to_file();
+	void save_to_file(string);
 	void browsing();
 	friend bool compare_by_year(const Data &, const Data &);
 	friend bool compare_by_value(const Data &, const Data &);

@@ -14,7 +14,7 @@ using namespace std;
 
 void show_menu();
 void get_data(string&, string&, char&, char&, char&, int&, int&, int&);
-void loading_from_file(int&, vector <Data>&);
+void loading_from_file(int&, vector <Data>&,string);
 string delete_underscore(string&);
 void delete_one_form_file(int);
 
@@ -33,7 +33,8 @@ int main()
 	int value = 0;
 	vector <Data> vec;
 	int counter = 0;
-	loading_from_file(counter, vec);
+	string name_of_data = "data.xdd";
+	loading_from_file(counter, vec, name_of_data);
 	
 	for (;;)
 	{
@@ -46,7 +47,7 @@ int main()
 		{
 			get_data(make, model, body_type, fuel, transmission, engine_size, year, value);
 			vec.push_back(Data(make, model, body_type, fuel, transmission, engine_size, year, value));
-			vec[counter].save_to_file();
+			vec[counter].save_to_file(name_of_data);
 			counter++;
 			break;
 		}
@@ -109,7 +110,6 @@ int main()
 						{
 							vec.erase(vec.begin() + c);
 							counter -= 1;
-							delete_one_form_file(c);
 							if (counter == 0)
 							{
 								system("CLS");
@@ -130,9 +130,52 @@ int main()
 						
 						{ }
 					}
+
+					if (GetAsyncKeyState(112) & 1)
+					{
+						cin.sync();
+						cout << "\n\n\nChcesz nadpisac aktualnie wczytana baze danych?" << endl;
+						cout << "1.TAK\n2.NIE" << endl;
+						while (_kbhit())
+							_getch();
+						int menu;
+						while (!(cin >> menu) || menu > 2 || menu == 0)
+						{
+							cin.clear();
+							cin.ignore();
+						}
+					//	cin.sync();
+						if (menu == 1)
+						{
+							fstream del(name_of_data, ios::out | ios::trunc);
+							del.close();
+							for (int i = 0; i < vec.size(); i++)
+								vec[i].save_to_file(name_of_data);
+							b = 1;
+							break;
+						}
+						else
+						{
+							string new_name;
+							while (cin.get() != '\n')
+							{
+								continue;
+							}
+							cin.sync();
+							system("CLS");
+							cout << "Podaj nazwe nowej bazy: ";
+							getline(cin, new_name);
+							new_name.append(".xdd");
+							for (int i = 0; i < vec.size(); i++)
+								vec[i].save_to_file(new_name);
+							b = 1;
+							break;
+						}
+					}
 				}
 			if (b == 1)
 			{
+				b = 0;
 				while (_kbhit())
 					_getch();
 				break;
@@ -253,9 +296,9 @@ void get_data(string &make, string &model, char &body_type, char &fuel, char &tr
 
 
 
-void loading_from_file(int &cou, vector <Data> &vec)
+void loading_from_file(int &cou, vector <Data> &vec, string name)
 {
-	fstream load("data.xdd", ios::in);
+	fstream load(name, ios::in);
 	if (load.good() == true)
 	{
 		string line;
@@ -273,7 +316,7 @@ void loading_from_file(int &cou, vector <Data> &vec)
 			cou++;	
 		}
 		cou -= 1;
-		fstream load("data.xdd", ios::in);
+		fstream load(name, ios::in);
 		for (int i = 0; i < cou; i++)
 		{
 			load >> mk;
@@ -293,12 +336,19 @@ void loading_from_file(int &cou, vector <Data> &vec)
 	else
 	{
 		cout << "Nie uda³o sie zaloadowac bazy danych." << endl;
-		cout << "Czy chcesz kontynu³owac z pusta baza danych? y/n" << endl;
-		char a='b';
-		while (a != 'y' && a != 'n')
-			cin >> a;
-
-		if(a=='n')
+		cout << "Czy chcesz kontynu³owac z pusta baza danych?" << endl;
+		cout << "1.TAK\n2.NIE" << endl;
+		int menu;
+		while (!(cin >> menu) || menu > 2 || menu == 0)
+		{
+			cin.clear();
+			cin.ignore();
+		}
+		while (cin.get() != '\n')
+		{
+			continue;
+		}
+		if(menu==2)
 			exit(0);
 	}
 

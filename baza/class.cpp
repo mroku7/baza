@@ -44,13 +44,16 @@ string Data::replacing_space(string &text)
 			text.replace(i, 1, "_");
 	return text;
 }
-void Data::save_to_file()
+void Data::save_to_file(string name)
 {
-	fstream save("data.xdd", ios::out | ios::app);
-	save << convert_for_save(m_make, m_model, m_body_type, m_fuel, m_transmission, m_engine_size, m_year, m_value);
-	save << endl;
-	save.close();
+		fstream save(name, ios::out | ios::app);
+		save << convert_for_save(m_make, m_model, m_body_type, m_fuel, m_transmission, m_engine_size, m_year, m_value);
+		save << endl;
+		save.close();
 }
+
+
+
 
 
 void Data::browsing()
@@ -68,7 +71,8 @@ void Data::browsing()
 	cout << "Rok produkcji: " <<"\t\t"<< m_year <<" rok"<< endl;
 	cout << "Wartosc: " << "\t\t" << m_value << " zl" << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
 	cout << "^-strzalka w gore = nastepny    v-strzalka w dol = poprzedni" << endl;
-	cout << "ESC = wyjscie                   DELETE = usun wybrany element";
+	cout << "ESC = wyjscie                   DELETE = usun wybrany element" << endl;
+	cout << "F1 = zapisz";
 }
 
 
