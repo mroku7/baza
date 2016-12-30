@@ -16,7 +16,6 @@ void show_menu();
 void get_data(string&, string&, char&, char&, char&, int&, int&, int&);
 void loading_from_file(int&, vector <Data>&,string);
 string delete_underscore(string&);
-void delete_one_form_file(int);
 
 
 
@@ -128,7 +127,6 @@ int main()
 							vec[c].browsing();
 						}
 						
-						{ }
 					}
 
 					if (GetAsyncKeyState(112) & 1)
@@ -144,7 +142,6 @@ int main()
 							cin.clear();
 							cin.ignore();
 						}
-					//	cin.sync();
 						if (menu == 1)
 						{
 							fstream del(name_of_data, ios::out | ios::trunc);
@@ -157,10 +154,7 @@ int main()
 						else
 						{
 							string new_name;
-							while (cin.get() != '\n')
-							{
-								continue;
-							}
+							while (cin.get() != '\n') continue;
 							cin.sync();
 							system("CLS");
 							cout << "Podaj nazwe nowej bazy: ";
@@ -229,11 +223,35 @@ int main()
 			break;
 		}
 		case '4':
-		{
-			auto *comparator = &compare_by_year;
-			comparator = &compare_by_year;
-			sort(vec.begin(), vec.end(), comparator);
+		{	
+			system("CLS");
+			cout << "Podaj nazwe pliku wraz z rozszerzeniem: "<<endl;
+			string name;
+			getline(cin, name);
+			cout << "Wybierz:" << endl;
+			cout << "1. Nadpisz aktualnie istniejaca baze." << endl;
+			cout << "2. Dopisz do aktualnie istniejacej bazy." << endl;
+			cout << "3. Anuluj." << endl;
+			int menu;
+			while (!(cin >> menu) || menu > 3 || menu == 0)
+			{
+				cin.clear();
+				cin.ignore();
+			}
+			if (menu == 1)
+			{
+				vec.clear();
+				counter = 0;
+				loading_from_file(counter, vec, name);
+			}
+			else if (menu == 2)
+			{
+				loading_from_file(counter, vec, name);
+			}
+			
 			break;
+
+			
 		}
 
 			
@@ -248,12 +266,6 @@ int main()
 		}
 		system("CLS");
 	}
-
-
-
-	getchar();
-	getchar();
-
 	return 0;
 }
 
@@ -262,7 +274,7 @@ void show_menu()
 	cout << "1. Dodaj samochod do bazy." << endl;
 	cout << "2. Przeglad bazy danych." << endl;
 	cout << "3. Sortowanie" << endl;
-	cout << "4." << endl;
+	cout << "4. Wczytanie bazy z pliku" << endl;
 	cout << "5." << endl;
 	cout << "6." << endl;
 	cout << "7. Wyjscie z programu." << endl;
@@ -366,12 +378,3 @@ string delete_underscore(string &text)
 	return text;
 }
 
-void delete_one_form_file(int c)
-{
-	string t;
-	fstream del("data.xdd");
-	for (int i = 0; i = c; i++);
-
-	
-
-}
