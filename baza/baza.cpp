@@ -13,20 +13,21 @@ using namespace std;
 
 
 void show_menu();
-void get_data(string&, string&, char&, char&, char&, int&, int&, int&);
+void get_data(string&, string&, int&, int&, int&, int&, int&, int&);
 void loading_from_file(int&, vector <Data>&,string);
 string delete_underscore(string&);
+void to_upper(string&);
 
 
 
 int main()
 {
-	
+
 	string make;
 	string model;
-	char body_type = 0;
-	char fuel = 0;
-	char transmission = 0;
+	int body_type = 0;
+	int fuel = 0;
+	int transmission = 0;
 	int engine_size = 0;
 	int year = 0;
 	int value = 0;
@@ -34,10 +35,10 @@ int main()
 	int counter = 0;
 	string name_of_data = "data.xdd";
 	loading_from_file(counter, vec, name_of_data);
-	
+
 	for (;;)
 	{
-		
+
 		show_menu();
 		char menu = _getch();
 		switch (menu)
@@ -99,13 +100,14 @@ int main()
 						cout << "\n\n\nCZY NA PEWNO CHCESZ USUNAC WYBRANY ELEMENT?" << endl;
 						cout << "1.TAK\n2.NIE" << endl;
 						int menu;
-						while (!(cin >> menu) || menu > 2 || menu==0)
+						while (!(cin >> menu) || menu > 2 || menu == 0)
 						{
 							cin.clear();
 							cin.ignore();
+							cout << "Podaj prawidlowa wartosc" << endl;
 						}
 						cin.sync();
-						if (menu==1)
+						if (menu == 1)
 						{
 							vec.erase(vec.begin() + c);
 							counter -= 1;
@@ -117,16 +119,16 @@ int main()
 								b = 1;
 								break;
 							}
-							if(c>0) c -= 1;
+							if (c > 0) c -= 1;
 							system("CLS");
 							vec[c].browsing();
 						}
 						else
-						{	
+						{
 							system("CLS");
 							vec[c].browsing();
 						}
-						
+
 					}
 
 					if (GetAsyncKeyState(112) & 1)
@@ -141,6 +143,7 @@ int main()
 						{
 							cin.clear();
 							cin.ignore();
+							cout << "Podaj prawidlowa wartosc" << endl;
 						}
 						if (menu == 1)
 						{
@@ -167,65 +170,83 @@ int main()
 						}
 					}
 				}
-			if (b == 1)
-			{
-				b = 0;
-				while (_kbhit())
-					_getch();
-				break;
-			}
-				
-				
+				if (b == 1)
+				{
+					b = 0;
+					while (_kbhit())
+						_getch();
+					break;
+				}
+
+
 			}
 			break;
 		}
 		case '3':
-		{	
+		{
 			system("CLS");
 			cout << "Prosze wybrac wartosc wg. ktorej sortowac." << endl;
-			cout << "1. Watrosc"<<endl;
-			cout << "2. Rok produkcji"<<endl;
+			cout << "1. Watrosc" << endl;
+			cout << "2. Rok produkcji" << endl;
 			cout << "3. Pojemnosc silnika" << endl;
+			cout << "4. Marka" << endl;
+			cout << "5. Model" << endl;
 			auto *comparator = &compare_by_value;
-			int menu = _getch();
-			if (menu == '1')
+			int menu;
+			while (!(cin >> menu) || menu > 5 || menu == 0)
+			{
+				cin.clear();
+				cin.ignore();
+				cout << "Podaj prawidlowa wartosc" << endl;
+			}
+
+			if (menu == 1)
 			{
 				comparator = &compare_by_value;
 				sort(vec.begin(), vec.end(), comparator);
 				cout << "\n\nSortowanie zakonczone.";
 				Sleep(1000);
+				break;
 			}
-			else if (menu == '2')
+			else if (menu == 2)
 			{
 				comparator = &compare_by_year;
 				sort(vec.begin(), vec.end(), comparator);
 				cout << "\n\nSortowanie zakonczone.";
 				Sleep(1000);
+				break;
 			}
-			else if (menu=='3')
+			else if (menu == 3)
 			{
 				comparator = &compare_by_eng;
 				sort(vec.begin(), vec.end(), comparator);
 				cout << "\n\nSortowanie zakonczone.";
 				Sleep(1000);
+				break;
 			}
-			else if(menu=='4')
+			else if (menu == 4)
 			{
 				comparator = &compare_by_make;
 				sort(vec.begin(), vec.end(), comparator);
 				cout << "\n\nSortowanie zakonczone.";
 				Sleep(1000);
-			}
-			else
 				break;
-			
-
+			}
+			else if (menu == 5)
+			{
+				comparator = &compare_by_model;
+				sort(vec.begin(), vec.end(), comparator);
+				cout << "\n\nSortowanie zakonczone.";
+				Sleep(1000);
+				break;
+			}
+			if (cin) cin.ignore(cin.rdbuf()->in_avail());
 			break;
 		}
 		case '4':
-		{	
+		{
 			system("CLS");
-			cout << "Podaj nazwe pliku wraz z rozszerzeniem: "<<endl;
+			cout << "Podaj nazwe pliku wraz z rozszerzeniem: " << endl;
 			string name;
 			getline(cin, name);
 			cout << "Wybierz:" << endl;
@@ -237,6 +258,7 @@ int main()
 			{
 				cin.clear();
 				cin.ignore();
+				cout << "Podaj prawidlowa wartosc" << endl;
 			}
 			if (menu == 1)
 			{
@@ -248,26 +270,57 @@ int main()
 			{
 				loading_from_file(counter, vec, name);
 			}
-			
-			break;
 
-			
+			break;
+		}
+		case '5':
+		{
+
+
+			cout << "Wybierz typ dla ktorego zastosowac filtr:" << endl;
+			cout << "1. nazwozie." << endl;
+			cout << "2. skrzynia." << endl;
+			cout << "3. paliwo." << endl;
+			int menu;
+			while (!(cin >> menu) || menu > 3 || menu == 0)
+			{
+				cin.clear();
+				cin.ignore();
+				cout << "Podaj prawidlowa wartosc" << endl;
+			}
+			if (menu == 1)
+			{
+
+			}
+
+
+
+
+
+
+
+			break;
 		}
 
-			
+
+
+
 
 		case '7':
 			exit(0);
 			break;
 
 		default:
+		{
 			cout << "Nie ma takiej opcji w menu!";
 			Sleep(1500);
 		}
 		system("CLS");
+		}
+		return 0;
 	}
-	return 0;
 }
+
 
 void show_menu()
 {
@@ -275,35 +328,69 @@ void show_menu()
 	cout << "2. Przeglad bazy danych." << endl;
 	cout << "3. Sortowanie" << endl;
 	cout << "4. Wczytanie bazy z pliku" << endl;
-	cout << "5." << endl;
+	cout << "5. Wyszukiwanie/filtrowanie" << endl;
 	cout << "6." << endl;
 	cout << "7. Wyjscie z programu." << endl;
 }
 
-void get_data(string &make, string &model, char &body_type, char &fuel, char &transmission, int &engine_size, int &year, int &value)
+void get_data(string &make, string &model, int &body_type, int &fuel, int &transmission, int &engine_size, int &year, int &value)
 {
+	string clear;
 	cout << "Podaj marke auta: " << endl;
 	getline(cin, make);
+	transform(make.begin(), make.end(), make.begin(), ::toupper);
 	cout << "Podaj model auta: " << endl;
 	getline(cin, model);
+	transform(model.begin(), model.end(), model.begin(), ::toupper);
 	cout << "Wybierz rodzaj nadwozia." << endl;
 	cout << "1.Hatchback  2.Sedan  3.Kombi 4.Kabriolet  5.Coupe  6.SUV  7.Terenowy"<<endl;
-	body_type= _getch();
+	while (!(cin>>body_type) || body_type > '7' || body_type == '0')
+	{
+		cin.clear();
+		cin.ignore();
+		cout << "Podaj prawidlowa wartosc" << endl;
+	}
 	cout << "Wybierz rodzaj paliwa." << endl;
 	cout << "1.Benzyna  2.Diesel  3.LPG  4.Elektryczny  5.Hybryda" << endl;
-	fuel= _getch();
+	while (!(cin >> fuel) || fuel > '5' || fuel == '0')
+	{
+		cin.clear();
+		cin.ignore();
+		cout << "Podaj prawidlowa wartosc" << endl;
+	}
 	cout << "Wybierz Typ skrzyni biegow." << endl;
 	cout << "1.Manualna  2.Automatyczna" << endl;
-	transmission = _getch();
+	while (!(cin >> transmission) || transmission > '2' || transmission == '0')
+	{
+		cin.clear();
+		cin.ignore();
+		cout << "Podaj prawidlowa wartosc" << endl;
+	}
 	cout << "Podaj pojemnosc silnika w cm^3: " << endl;
-	cin >> engine_size;
+	while (!(cin >> engine_size))
+	{
+		cin.clear();
+		cin.ignore();
+		cout << "Podaj prawidlowa wartosc" << endl;
+	}
 	cin.ignore();
 	cout << "Podaj rok produkcji auta: " << endl;
-	cin >> year;
+	while (!(cin >> year))
+	{
+		cin.clear();
+		cin.ignore();
+		cout << "Podaj prawidlowa wartosc" << endl;
+	}
 	cin.ignore();
 	cout << "Podaj wartosc auta w zl: " << endl;
-	cin >> value;
-	cin.ignore();
+	while (!(cin >> value))
+	{
+		cin.clear();
+		cin.ignore();
+		cout << "Podaj prawidlowa wartosc" << endl;
+	}
+	if (cin) cin.ignore(cin.rdbuf()->in_avail());
+	
 }
 
 
@@ -376,5 +463,14 @@ string delete_underscore(string &text)
 		if (text[i] == '_')
 			text.replace(i, 1, " ");
 	return text;
+}
+
+void to_upper(string &change)
+{
+	for (int i = 0; i < change.size(); i++)
+		if (islower(change[i]))
+			toupper(change[i]);
+	
+	
 }
 

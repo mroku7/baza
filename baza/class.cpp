@@ -3,7 +3,7 @@
 
 
 Data::Data(){}
-Data::Data(string make, string model, char body_type, char fuel, char transmission, int engine_size, int year, int value)
+Data::Data(string make, string model, int body_type, int fuel, int transmission, int engine_size, int year, int value)
 {
 	m_make = make;
 	m_model = model;
@@ -14,25 +14,32 @@ Data::Data(string make, string model, char body_type, char fuel, char transmissi
 	m_year = year;
 	m_value = value;
 }
-string Data::convert_for_save(string mk, string md, char bt, char fu, char tr, int eng, int year, int val)
+string Data::convert_for_save(string mk, string md, int bt, int fu, int tr, int eng, int year, int val)
 {
 	string text;
 	replacing_space(mk);
 	replacing_space(md);
 	text.append(mk);
 	text.append(" ");
+
 	text.append(md);
 	text.append(" ");
-	text.push_back(bt);
+
+	text += to_string(bt);
 	text.append(" ");
-	text.push_back(fu);
+
+	text += to_string(fu);
 	text.append(" ");
-	text.push_back(tr);
+
+	text += to_string(tr);
 	text.append(" ");
+
 	text += to_string(eng);
 	text.append(" ");
+
 	text += to_string(year);
 	text.append(" ");
+
 	text += to_string(val);
 	return text;
 }
@@ -70,14 +77,14 @@ void Data::browsing()
 	cout << "Pojemnosc silnika: " <<"\t"<< m_engine_size <<" cm^3"<< endl;
 	cout << "Rok produkcji: " <<"\t\t"<< m_year <<" rok"<< endl;
 	cout << "Wartosc: " << "\t\t" << m_value << " zl" << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
-	cout << "^-strzalka w gore = nastepny    v-strzalka w dol = poprzedni" << endl;
+	cout << "^-strzalka w gore = poprzedni    v-strzalka w dol = nastepny" << endl;
 	cout << "ESC = wyjscie                   DELETE = usun wybrany element" << endl;
 	cout << "F1 = zapisz";
 }
 
 
 
-string Data::body_type(char nr)
+string Data::body_type(int nr)
 {
 	string one = "Hatchback";
 	string two = "Sedan";
@@ -102,7 +109,7 @@ string Data::body_type(char nr)
 		return seven;
 }
 
-string Data::fuel(char nr)
+string Data::fuel(int nr)
 {
 	string one = "Benzyna";
 	string two = "Diesel";
@@ -139,4 +146,9 @@ bool compare_by_eng(const Data &lhs, const Data &rhs)
 bool compare_by_make(const Data &lhs, const Data &rhs)
 {
 	return lhs.m_make < rhs.m_make;
+}
+
+bool compare_by_model(const Data &lhs, const Data &rhs)
+{
+	return lhs.m_model < rhs.m_model;
 }

@@ -1,5 +1,6 @@
 ﻿  baza.cpp
-f:\gicior\baza\baza\baza.cpp(149): warning C4018: '<': signed/unsigned mismatch
-f:\gicior\baza\baza\baza.cpp(163): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(152): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(166): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(470): warning C4018: '<': signed/unsigned mismatch
   baza.vcxproj -> F:\gicior\baza\Debug\baza.exe
   baza.vcxproj -> F:\gicior\baza\Debug\baza.pdb (Full PDB)
