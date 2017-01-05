@@ -16,7 +16,7 @@ void show_menu();
 void get_data(string&, string&, int&, int&, int&, int&, int&, int&);
 void loading_from_file(int&, vector <Data>&,string);
 string delete_underscore(string&);
-void to_upper(string&);
+void searching(vector <Data>&, vector<Data>, string, string, int, int, int, int, int, int, int, int, int, int);
 
 
 
@@ -32,13 +32,14 @@ int main()
 	int year = 0;
 	int value = 0;
 	vector <Data> vec;
+	vector <Data> vec_s;
 	int counter = 0;
 	string name_of_data = "data.xdd";
 	loading_from_file(counter, vec, name_of_data);
 
 	for (;;)
 	{
-
+		system("CLS");
 		show_menu();
 		char menu = _getch();
 		switch (menu)
@@ -275,30 +276,234 @@ int main()
 		}
 		case '5':
 		{
+			
+				string s_make = " ";
+				string s_model = " ";
+				int s_body_type = 0;
+				int s_fuel = 0;
+				int s_transmission = 0;
+				int s_engine_size_min = 0;
+				int s_engine_size_max = 0;
+				int s_year_min = 0;
+				int s_year_max = 0;
+				int s_value_min = 0;
+				int s_value_max = 0;
+				bool set = false;
+				for (;;)
+				{
+					system("CLS");
+					cout << "Wybierz typ dla ktorego zastosowac filtr:" << endl;
+					cout << "1. Marka." << endl;
+					cout << "2. Model." << endl;
+					cout << "3. Typ nadwozia." << endl;
+					cout << "4. Rodzaj paliwa." << endl;
+					cout << "5. Rodzaj skrzyni biegow." << endl;
+					cout << "6. Pojemnosc silnika." << endl;
+					cout << "7. Rok produkcji." << endl;
+					cout << "8. Wartosc." << endl << endl;
+					cout << "9. Wyswietl." << endl << endl << endl << endl;
+					cout << "0. Wyjscie." << endl;
 
 
-			cout << "Wybierz typ dla ktorego zastosowac filtr:" << endl;
-			cout << "1. nazwozie." << endl;
-			cout << "2. skrzynia." << endl;
-			cout << "3. paliwo." << endl;
-			int menu;
-			while (!(cin >> menu) || menu > 3 || menu == 0)
-			{
-				cin.clear();
-				cin.ignore();
-				cout << "Podaj prawidlowa wartosc" << endl;
-			}
-			if (menu == 1)
-			{
+					int menu;
+					while (!(cin >> menu) || menu > 9)
+					{
+						cin.clear();
+						cin.ignore();
+						cout << "Podaj prawidlowa wartosc" << endl;
+					}
+					if (menu == 9)
+					{
+						if (set)
+						{
+							searching(vec_s, vec,s_make, s_model, s_body_type, s_fuel, s_transmission, s_engine_size_min, s_engine_size_max, s_year_min, s_year_max, s_value_min, s_value_max, counter);
+						}
+						else
+						{
+							cout << "Nie ustawiono zadnych filtrow!";
+							Sleep(2000);
+							continue;
+						}
 
-			}
+
+					}
+					else if (menu == 1)
+					{
+						cout << "\n\n\nWpisz poszukiwana marke: ";
+						getline(cin, s_make);
+						getline(cin, s_make);
+						cout << "\nUstawiono filtr \"" << s_make << "\" dla marki.";
+						transform(s_make.begin(), s_make.end(), s_make.begin(), ::toupper);
+						set = true;
+						Sleep(2000);
+					}
+					else if (menu == 2)
+					{
+						cout << "\n\n\nWpisz poszukiwany model: ";
+						getline(cin, s_model);
+						getline(cin, s_model);
+						cout << "\nUstawiono filtr \"" << s_model << "\" dla modelu.";
+						transform(s_model.begin(), s_model.end(), s_model.begin(), ::toupper);
+						set = true;
+						Sleep(2000);
+					}
+					else if (menu == 3)
+					{
+						cout << "\n\n\nWybierz typ nadwozia: " << endl;
+						cout << "1.Hatchback  2.Sedan  3.Kombi 4.Kabriolet  5.Coupe  6.SUV  7.Terenowy" << endl;
+						while (!(cin >> s_body_type) || s_body_type > 7 || s_body_type == 0)
+						{
+							cin.clear();
+							cin.ignore();
+							cout << "Podaj prawidlowa wartosc" << endl;
+						}
+						cout << "\nUstawiono filtr \"";
+						if (s_body_type == 1)
+							cout << "Hatchback";
+						else if (s_body_type == 2)
+							cout << "Sedan";
+						else if (s_body_type == 3)
+							cout << "Kombi";
+						else if (s_body_type == 4)
+							cout << "Kabriolet";
+						else if (s_body_type == 5)
+							cout << "Coupe";
+						else if (s_body_type == 6)
+							cout << "SUV";
+						else if (s_body_type == 7)
+							cout << "Terenowy";
+						cout << "\" dla typu nadwozia.";
+						set = true;
+
+						Sleep(2000);
+					}
+					else if (menu == 4)
+					{
+						cout << "\n\n\nWybierz rodzaj paliwa: " << endl;
+						cout << "1.Benzyna  2.Diesel  3.LPG  4.Elektryczny  5.Hybryda" << endl;
+						while (!(cin >> s_fuel) || s_fuel > 5 || s_fuel == 0)
+						{
+							cin.clear();
+							cin.ignore();
+							cout << "Podaj prawidlowa wartosc" << endl;
+						}
+						cout << "\nUstawiono filtr \"";
+						if (s_fuel == 1)
+							cout << "Benzyna";
+						else if (s_fuel == 2)
+							cout << "Diesel";
+						else if (s_fuel == 3)
+							cout << "LPG";
+						else if (s_fuel == 4)
+							cout << "Elektryczny";
+						else if (s_fuel == 5)
+							cout << "Hybryda";
+						cout << "\" dla rodzaju paliwa.";
+						set = true;
+						Sleep(2000);
+					}
+					else if (menu == 5)
+					{
+						cout << "\n\n\nWybierz typ skrzyni biegow: " << endl;
+						cout << "1.Manualna  2.Automatyczna" << endl;
+						while (!(cin >> s_transmission) || s_transmission > 2 || s_transmission == 0)
+						{
+							cin.clear();
+							cin.ignore();
+							cout << "Podaj prawidlowa wartosc" << endl;
+						}
+						cout << "\nUstawiono filtr \"";
+						if (s_transmission == 1)
+							cout << "Manualna";
+						else if (s_transmission == 2)
+							cout << "Automatyczna";
+						cout << "\" dla typu skrzyni biegow.";
+						set = true;
+						Sleep(2000);
+					}
+					else if (menu == 6)
+					{
+						cout << "\n\n\nWpisz przedzial pojemnosci silnika (cm^3): " << endl;
+						cout << "Minimalna: ";
+						while (!(cin >> s_engine_size_min) || s_engine_size_min < 0)
+						{
+							cin.clear();
+							cin.ignore();
+							cout << "Podaj prawidlowa wartosc" << endl;
+						}
+						cout << "Maksmyalna: ";
+						while (!(cin >> s_engine_size_max) || s_engine_size_min > s_engine_size_max)
+						{
+							cin.clear();
+							cin.ignore();
+							cout << "Podaj prawidlowa wartosc" << endl;
+						}
+						cout << "\nUstawiono przedzial pojemnosci silnika od " << s_engine_size_min << " do " << s_engine_size_max << " cm^3.";
+						set = true;
+						Sleep(2000);
+
+					}
+					else if (menu == 7)
+					{
+						cout << "\n\n\nWpisz zakres roku produkcji: " << endl;
+						cout << "Od: ";
+						while (!(cin >> s_year_min) || s_year_min <= 0)
+						{
+							cin.clear();
+							cin.ignore();
+							cout << "Podaj prawidlowa wartosc" << endl;
+						}
+						cout << "Do: ";
+						while (!(cin >> s_year_max) || s_year_min > s_year_max)
+						{
+							cin.clear();
+							cin.ignore();
+							cout << "Podaj prawidlowa wartosc" << endl;
+						}
+						cout << "\nUstawiono zakres roku produkcji od " << s_year_min << " do " << s_year_max << " r.";
+						set = true;
+						Sleep(2000);
+
+					}
+					else if (menu == 8)
+					{
+						cout << "\n\n\nWpisz zakres wartosci pojazdu: " << endl;
+						cout << "Od: ";
+						while (!(cin >> s_value_min) || s_value_min <= 0)
+						{
+							cin.clear();
+							cin.ignore();
+							cout << "Podaj prawidlowa wartosc" << endl;
+						}
+						cout << "Do: ";
+						while (!(cin >> s_value_max) || s_value_min > s_value_max)
+						{
+							cin.clear();
+							cin.ignore();
+							cout << "Podaj prawidlowa wartosc" << endl;
+						}
+						cout << "\nUstawiono zakres wartosci pojazdu od " << s_value_min << " do " << s_value_max << " zl.";
+						set = true;
+						Sleep(2000);
+
+					}
+
+
+
+
+
+					if (menu == 0)
+					{
+						system("CLS");
+						continue;
+					}
 
 
 
 
 
 
-
+				}
 			break;
 		}
 
@@ -317,8 +522,9 @@ int main()
 		}
 		system("CLS");
 		}
-		return 0;
+		
 	}
+	return 0;
 }
 
 
@@ -358,7 +564,7 @@ void get_data(string &make, string &model, int &body_type, int &fuel, int &trans
 		cin.ignore();
 		cout << "Podaj prawidlowa wartosc" << endl;
 	}
-	cout << "Wybierz Typ skrzyni biegow." << endl;
+	cout << "Wybierz typ skrzyni biegow." << endl;
 	cout << "1.Manualna  2.Automatyczna" << endl;
 	while (!(cin >> transmission) || transmission > '2' || transmission == '0')
 	{
@@ -465,12 +671,293 @@ string delete_underscore(string &text)
 	return text;
 }
 
-void to_upper(string &change)
-{
-	for (int i = 0; i < change.size(); i++)
-		if (islower(change[i]))
-			toupper(change[i]);
-	
-	
-}
 
+
+
+void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string s_model, int s_body, int s_fuel, int s_transmission, int s_eng_min, int s_eng_max, int s_year_min, int s_year_max, int s_val_min, int s_val_max, int c )
+{	
+	vector_s = vec;
+	if (s_make != " ")
+	{
+		bool flag = false;
+		bool flag2 = false;
+		for (;;)
+		{
+			for (int i = 0; i < vector_s.size(); i++)
+			{
+				string make = vector_s[i].get_make();
+				for (int j = 0; j < make.length(); j++)
+				{
+					if (s_make[j] != make[j])
+					{
+						vector_s.erase(vector_s.begin()+ i);
+						flag = true;
+						c -= 1;
+						break;
+					}
+				}
+				if (flag)
+				{
+					flag = false;
+					break;
+				}
+				if (i == (vector_s.size()-1))
+				{
+					flag2 = true;
+					break;
+				}
+			}
+			if (flag2 || vector_s.size()==0)
+				break;
+		}	
+	}
+
+	if (s_model != " ")
+	{
+		bool flag = false;
+		bool flag2 = false;
+		for (;;)
+		{
+			for (int i = 0; i < vector_s.size(); i++)
+			{
+				string model = vector_s[i].get_model();
+				for (int j = 0; j < model.length(); j++)
+				{
+					if (s_model[j] != model[j])
+					{
+						vector_s.erase(vector_s.begin() + i);
+						flag = true;
+						c -= 1;
+						break;
+					}
+				}
+				if (flag)
+				{
+					flag = false;
+					break;
+				}
+				if (i == (vector_s.size() - 1))
+				{
+					flag2 = true;
+					break;
+				}
+			}
+			if (flag2)
+				break;
+		}
+	}
+
+	if (s_body != 0)
+	{
+		bool flag = false;
+		for (;;)
+		{
+			for (int i = 0; i < vector_s.size(); i++)
+			{
+				int body = (vector_s[i].get_body())-48;
+				if (s_body != body)
+				{
+					vector_s.erase(vector_s.begin() + i);
+					c -= 1;
+					break;
+				}
+				
+				if (i == (vector_s.size() - 1))
+				{
+					flag = true;
+					break;
+				}
+			}
+			if (flag)
+				break;
+		}
+	}
+
+	if (s_fuel != 0)
+	{
+		bool flag = false;
+		for (;;)
+		{
+			for (int i = 0; i < vector_s.size(); i++)
+			{
+				int fuel = (vector_s[i].get_fuel()) - 48;
+				if (s_fuel != fuel)
+				{
+					vector_s.erase(vector_s.begin() + i);
+					c -= 1;
+					break;
+				}
+
+				if (i == (vector_s.size() - 1))
+				{
+					flag = true;
+					break;
+				}
+			}
+			if (flag)
+				break;
+		}
+	}
+
+	if (s_transmission != 0)
+	{
+		bool flag = false;
+		for (;;)
+		{
+			for (int i = 0; i < vector_s.size(); i++)
+			{
+				int transmission = (vector_s[i].get_transmission()) - 48;
+				if (s_transmission != transmission)
+				{
+					vector_s.erase(vector_s.begin() + i);
+					c -= 1;
+					break;
+				}
+
+				if (i == (vector_s.size() - 1))
+				{
+					flag = true;
+					break;
+				}
+			}
+			if (flag)
+				break;
+		}
+	}
+
+	if (s_eng_min != 0 || s_eng_max != 0)
+	{
+		bool flag = false;
+		for (;;)
+		{
+			for (int i = 0; i < vector_s.size(); i++)
+			{
+				int eng = vector_s[i].get_engine();
+				if (eng < s_eng_min || eng > s_eng_max)
+				{
+					vector_s.erase(vector_s.begin() + i);
+					c -= 1;
+					break;
+				}
+
+				if (i == (vector_s.size() - 1))
+				{
+					flag = true;
+					break;
+				}
+			}
+			if (flag)
+				break;
+		}
+	}
+
+	if (s_year_min != 0 || s_year_max != 0)
+	{
+		bool flag = false;
+		for (;;)
+		{
+			for (int i = 0; i < vector_s.size(); i++)
+			{
+				int year = vector_s[i].get_year();
+				if (year < s_year_min || year > s_year_max)
+				{
+					vector_s.erase(vector_s.begin() + i);
+					c -= 1;
+					break;
+				}
+
+				if (i == (vector_s.size() - 1))
+				{
+					flag = true;
+					break;
+				}
+			}
+			if (flag)
+				break;
+		}
+	}
+
+	if (s_val_min != 0 || s_val_max != 0)
+	{
+		bool flag = false;
+		for (;;)
+		{
+			for (int i = 0; i < vector_s.size(); i++)
+			{
+				int val = vector_s[i].get_value();
+				if (val < s_val_min || val > s_val_max)
+				{
+					vector_s.erase(vector_s.begin() + i);
+					c -= 1;
+					break;
+				}
+
+				if (i == (vector_s.size() - 1))
+				{
+					flag = true;
+					break;
+				}
+			}
+			if (flag)
+				break;
+		}
+	}
+
+	if (vector_s.size() == 0)
+	{	
+		system("CLS");
+		cout << "Brak samochodow w bazie spelniajacych kryteria";
+		Sleep(4000);
+	}
+	else
+	{
+		int s = 0;
+		bool g = false;
+		system("CLS");
+		vector_s[s].browsing_wfilter();
+		for (;;)
+		{
+			for (;;)
+			{
+				if (GetAsyncKeyState(VK_ESCAPE) & 1)
+				{
+					g = true;
+					break;
+				}
+				if (GetAsyncKeyState(VK_UP) & 1)
+				{
+					s -= 1;
+					if (s < 0)
+					{
+						s = 0;
+						break;
+					}
+					system("CLS");
+					vector_s[s].browsing_wfilter();
+				}
+				if (GetAsyncKeyState(VK_DOWN) & 1)
+				{
+					s += 1;
+					if (s >= c)
+					{
+						s = c - 1;
+						break;
+					}
+					system("CLS");
+					vector_s[s].browsing_wfilter();
+				}
+
+
+			}
+			if (g)
+			{
+				g = false;
+				while (_kbhit())
+					_getch();
+				break;
+			}
+
+		}
+	}
+
+}

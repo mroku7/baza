@@ -65,9 +65,8 @@ void Data::save_to_file(string name)
 
 void Data::browsing()
 {
-	
-	cout << "Model: " <<"\t\t\t"<< m_make << endl;
-	cout << "Marka: " << "\t\t\t" << m_model << endl;
+	cout << "Marka: " << "\t\t\t" << m_make << endl;
+	cout << "Model: " <<"\t\t\t"<< m_model << endl;
 	cout << "Typ nadwodzia: " << "\t\t" << body_type(m_body_type)<< endl;
 	cout << "Rodzaj skrzyni biegow: "<<"\t";
 	if (m_transmission == 1)
@@ -80,6 +79,23 @@ void Data::browsing()
 	cout << "^-strzalka w gore = poprzedni    v-strzalka w dol = nastepny" << endl;
 	cout << "ESC = wyjscie                   DELETE = usun wybrany element" << endl;
 	cout << "F1 = zapisz";
+}
+void Data::browsing_wfilter()
+{
+	cout << "Marka: " << "\t\t\t" << m_make << endl;
+	cout << "Model: " << "\t\t\t" << m_model << endl;
+	cout << "Typ nadwodzia: " << "\t\t" << body_type(m_body_type) << endl;
+	cout << "Rodzaj skrzyni biegow: " << "\t";
+	if (m_transmission == 1)
+		cout << "Manualna" << endl;
+	else cout << "Automatyczna" << endl;
+	cout << "Rodzaj paliwa: " << "\t\t" << fuel(m_fuel) << endl;
+	cout << "Pojemnosc silnika: " << "\t" << m_engine_size << " cm^3" << endl;
+	cout << "Rok produkcji: " << "\t\t" << m_year << " rok" << endl;
+	cout << "Wartosc: " << "\t\t" << m_value << " zl" << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
+	cout << "^-strzalka w gore = poprzedni    v-strzalka w dol = nastepny" << endl;
+	cout << "ESC = wyjscie";
+	
 }
 
 
@@ -128,27 +144,61 @@ string Data::fuel(int nr)
 		return five;
 }
 
+
+
 bool compare_by_year(const Data & lhs, const Data &rhs)
 {
 	return lhs.m_year < rhs.m_year;
 }
-
 bool compare_by_value(const Data &lhs, const Data &rhs)
 {
 	return lhs.m_value < rhs.m_value;
-	
 }
 bool compare_by_eng(const Data &lhs, const Data &rhs)
 {
 	return lhs.m_engine_size < rhs.m_engine_size;
 }
-
 bool compare_by_make(const Data &lhs, const Data &rhs)
 {
 	return lhs.m_make < rhs.m_make;
 }
-
 bool compare_by_model(const Data &lhs, const Data &rhs)
 {
 	return lhs.m_model < rhs.m_model;
+}
+
+
+
+
+string Data::get_make()
+{
+	return m_make;
+}
+string Data::get_model()
+{
+	return m_model;
+}
+int Data::get_body()
+{
+	return m_body_type;
+}
+int Data::get_fuel()
+{
+	return m_fuel;
+}
+int Data::get_transmission()
+{
+	return m_transmission;
+}
+int Data::get_engine()
+{
+	return m_engine_size;
+}
+int Data::get_year()
+{
+	return m_year;
+}
+int Data::get_value()
+{
+	return m_value;
 }

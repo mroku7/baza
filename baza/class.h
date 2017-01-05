@@ -20,7 +20,6 @@ private:
 	int m_value;
 	string convert_for_save(string, string, int, int, int, int, int, int);
 	string replacing_space(string&);
-	string body_type(int);
 	string fuel(int);
 
 public:
@@ -28,6 +27,16 @@ public:
 	Data(string, string, int, int, int, int, int, int);
 	void save_to_file(string);
 	void browsing();
+	void browsing_wfilter();
+	string body_type(int);
+	string get_make();
+	string get_model();
+	int get_body();
+	int get_fuel();
+	int get_transmission();
+	int get_engine();
+	int get_year();
+	int get_value();
 	friend bool compare_by_year(const Data &, const Data &);
 	friend bool compare_by_value(const Data &, const Data &);
 	friend bool compare_by_eng(const Data &, const Data &);
