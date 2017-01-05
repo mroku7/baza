@@ -9,7 +9,6 @@ using namespace std;
 
 class Data {
 private:
-
 	string m_make;
 	string m_model;
 	int m_body_type;

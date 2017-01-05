@@ -51,6 +51,7 @@ string Data::replacing_space(string &text)
 			text.replace(i, 1, "_");
 	return text;
 }
+
 void Data::save_to_file(string name)
 {
 		fstream save(name, ios::out | ios::app);
@@ -58,10 +59,6 @@ void Data::save_to_file(string name)
 		save << endl;
 		save.close();
 }
-
-
-
-
 
 void Data::browsing()
 {
@@ -80,6 +77,7 @@ void Data::browsing()
 	cout << "ESC = wyjscie                   DELETE = usun wybrany element" << endl;
 	cout << "F1 = zapisz";
 }
+
 void Data::browsing_wfilter()
 {
 	cout << "Marka: " << "\t\t\t" << m_make << endl;
@@ -97,8 +95,6 @@ void Data::browsing_wfilter()
 	cout << "ESC = wyjscie";
 	
 }
-
-
 
 string Data::body_type(int nr)
 {
@@ -144,8 +140,6 @@ string Data::fuel(int nr)
 		return five;
 }
 
-
-
 bool compare_by_year(const Data & lhs, const Data &rhs)
 {
 	return lhs.m_year < rhs.m_year;
@@ -166,8 +160,6 @@ bool compare_by_model(const Data &lhs, const Data &rhs)
 {
 	return lhs.m_model < rhs.m_model;
 }
-
-
 
 
 string Data::get_make()

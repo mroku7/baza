@@ -11,18 +11,15 @@
 
 using namespace std;
 
-
 void show_menu();
+void show_menu_wfilter(string, string, int, int, int, int, int, int, int, int, int);
 void get_data(string&, string&, int&, int&, int&, int&, int&, int&);
 void loading_from_file(int&, vector <Data>&,string);
 string delete_underscore(string&);
 void searching(vector <Data>&, vector<Data>, string, string, int, int, int, int, int, int, int, int, int, int);
 
-
-
 int main()
 {
-
 	string make;
 	string model;
 	int body_type = 0;
@@ -83,7 +80,6 @@ int main()
 						}
 						system("CLS");
 						vec[c].browsing();
-
 					}
 					if (GetAsyncKeyState(VK_DOWN) & 1)
 					{
@@ -129,9 +125,7 @@ int main()
 							system("CLS");
 							vec[c].browsing();
 						}
-
 					}
-
 					if (GetAsyncKeyState(112) & 1)
 					{
 						cin.sync();
@@ -178,8 +172,6 @@ int main()
 						_getch();
 					break;
 				}
-
-
 			}
 			break;
 		}
@@ -200,7 +192,6 @@ int main()
 				cin.ignore();
 				cout << "Podaj prawidlowa wartosc" << endl;
 			}
-
 			if (menu == 1)
 			{
 				comparator = &compare_by_value;
@@ -275,8 +266,7 @@ int main()
 			break;
 		}
 		case '5':
-		{
-			
+		{		
 				string s_make = " ";
 				string s_model = " ";
 				int s_body_type = 0;
@@ -291,20 +281,7 @@ int main()
 				bool set = false;
 				for (;;)
 				{
-					system("CLS");
-					cout << "Wybierz typ dla ktorego zastosowac filtr:" << endl;
-					cout << "1. Marka." << endl;
-					cout << "2. Model." << endl;
-					cout << "3. Typ nadwozia." << endl;
-					cout << "4. Rodzaj paliwa." << endl;
-					cout << "5. Rodzaj skrzyni biegow." << endl;
-					cout << "6. Pojemnosc silnika." << endl;
-					cout << "7. Rok produkcji." << endl;
-					cout << "8. Wartosc." << endl << endl;
-					cout << "9. Wyswietl." << endl << endl << endl << endl;
-					cout << "0. Wyjscie." << endl;
-
-
+					show_menu_wfilter(s_make, s_model, s_body_type, s_fuel, s_transmission, s_engine_size_min, s_engine_size_max, s_year_min, s_year_max, s_value_min, s_value_max);
 					int menu;
 					while (!(cin >> menu) || menu > 9)
 					{
@@ -315,17 +292,13 @@ int main()
 					if (menu == 9)
 					{
 						if (set)
-						{
 							searching(vec_s, vec,s_make, s_model, s_body_type, s_fuel, s_transmission, s_engine_size_min, s_engine_size_max, s_year_min, s_year_max, s_value_min, s_value_max, counter);
-						}
 						else
 						{
 							cout << "Nie ustawiono zadnych filtrow!";
 							Sleep(2000);
 							continue;
 						}
-
-
 					}
 					else if (menu == 1)
 					{
@@ -374,7 +347,6 @@ int main()
 							cout << "Terenowy";
 						cout << "\" dla typu nadwozia.";
 						set = true;
-
 						Sleep(2000);
 					}
 					else if (menu == 4)
@@ -487,42 +459,26 @@ int main()
 						Sleep(2000);
 
 					}
-
-
-
-
-
-					if (menu == 0)
+					else if (menu == 0)
 					{
 						system("CLS");
-						continue;
+						break;
 					}
-
-
-
-
-
-
 				}
 			break;
 		}
-
-
-
-
-
-		case '7':
+		case '6':
+		{
 			exit(0);
 			break;
-
+		}
 		default:
 		{
 			cout << "Nie ma takiej opcji w menu!";
 			Sleep(1500);
 		}
 		system("CLS");
-		}
-		
+		}	
 	}
 	return 0;
 }
@@ -535,8 +491,7 @@ void show_menu()
 	cout << "3. Sortowanie" << endl;
 	cout << "4. Wczytanie bazy z pliku" << endl;
 	cout << "5. Wyszukiwanie/filtrowanie" << endl;
-	cout << "6." << endl;
-	cout << "7. Wyjscie z programu." << endl;
+	cout << "6. Wyjscie z programu." << endl;
 }
 
 void get_data(string &make, string &model, int &body_type, int &fuel, int &transmission, int &engine_size, int &year, int &value)
@@ -599,8 +554,6 @@ void get_data(string &make, string &model, int &body_type, int &fuel, int &trans
 	
 }
 
-
-
 void loading_from_file(int &cou, vector <Data> &vec, string name)
 {
 	fstream load(name, ios::in);
@@ -656,11 +609,7 @@ void loading_from_file(int &cou, vector <Data> &vec, string name)
 		if(menu==2)
 			exit(0);
 	}
-
-
 	system("CLS");
-
-
 }
 
 string delete_underscore(string &text)
@@ -670,9 +619,6 @@ string delete_underscore(string &text)
 			text.replace(i, 1, " ");
 	return text;
 }
-
-
-
 
 void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string s_model, int s_body, int s_fuel, int s_transmission, int s_eng_min, int s_eng_max, int s_year_min, int s_year_max, int s_val_min, int s_val_max, int c )
 {	
@@ -742,7 +688,7 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 					break;
 				}
 			}
-			if (flag2)
+			if (flag2 || vector_s.size() == 0)
 				break;
 		}
 	}
@@ -760,15 +706,14 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 					vector_s.erase(vector_s.begin() + i);
 					c -= 1;
 					break;
-				}
-				
+				}		
 				if (i == (vector_s.size() - 1))
 				{
 					flag = true;
 					break;
 				}
 			}
-			if (flag)
+			if (flag || vector_s.size() == 0)
 				break;
 		}
 	}
@@ -787,14 +732,13 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 					c -= 1;
 					break;
 				}
-
 				if (i == (vector_s.size() - 1))
 				{
 					flag = true;
 					break;
 				}
 			}
-			if (flag)
+			if (flag || vector_s.size() == 0)
 				break;
 		}
 	}
@@ -813,14 +757,13 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 					c -= 1;
 					break;
 				}
-
 				if (i == (vector_s.size() - 1))
 				{
 					flag = true;
 					break;
 				}
 			}
-			if (flag)
+			if (flag || vector_s.size() == 0)
 				break;
 		}
 	}
@@ -839,14 +782,13 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 					c -= 1;
 					break;
 				}
-
 				if (i == (vector_s.size() - 1))
 				{
 					flag = true;
 					break;
 				}
 			}
-			if (flag)
+			if (flag || vector_s.size() == 0)
 				break;
 		}
 	}
@@ -865,14 +807,13 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 					c -= 1;
 					break;
 				}
-
 				if (i == (vector_s.size() - 1))
 				{
 					flag = true;
 					break;
 				}
 			}
-			if (flag)
+			if (flag || vector_s.size() == 0)
 				break;
 		}
 	}
@@ -891,14 +832,13 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 					c -= 1;
 					break;
 				}
-
 				if (i == (vector_s.size() - 1))
 				{
 					flag = true;
 					break;
 				}
 			}
-			if (flag)
+			if (flag || vector_s.size() == 0)
 				break;
 		}
 	}
@@ -906,7 +846,7 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 	if (vector_s.size() == 0)
 	{	
 		system("CLS");
-		cout << "Brak samochodow w bazie spelniajacych kryteria";
+		cout << "Brak samochodow w bazie spelniajacych wybrane kryteria";
 		Sleep(4000);
 	}
 	else
@@ -946,8 +886,6 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 					system("CLS");
 					vector_s[s].browsing_wfilter();
 				}
-
-
 			}
 			if (g)
 			{
@@ -956,8 +894,74 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 					_getch();
 				break;
 			}
-
 		}
 	}
+}
 
+void show_menu_wfilter(string make, string model, int body, int fuel, int tra, int eng_min, int eng_max, int year_min, int year_max, int val_min, int val_max  )
+{
+	system("CLS");
+	cout << "Wybierz typ dla ktorego zastosowac filtr:" << endl;
+	cout << "1. Marka." << endl;
+	cout << "2. Model." << endl;
+	cout << "3. Typ nadwozia." << endl;
+	cout << "4. Rodzaj paliwa." << endl;
+	cout << "5. Rodzaj skrzyni biegow." << endl;
+	cout << "6. Pojemnosc silnika." << endl;
+	cout << "7. Rok produkcji." << endl;
+	cout << "8. Wartosc." << endl << endl;
+	cout << "9. Wyswietl." << endl;
+	cout << "0. Wyjscie." << endl << endl << endl;
+	if (make != " " || model != " " || body != 0 || fuel != 0 || tra != 0 || eng_min != 0 || eng_max != 0 || year_min != 0 || year_max != 0 || val_min != 0 || val_max != 0)
+	cout << "Aktualnie ustawione filtry: " << endl;
+	if (make != " ")
+		cout << "Marka: " << make << endl;
+	if (model != " ")
+		cout << "Model: " << model << endl;
+	if (body != 0)
+	{
+		cout << "Typ nadwozia: ";
+		if (body == 1)
+			cout << "Hatchback" << endl;
+		else if (body == 2)
+			cout << "Sedan" << endl;
+		else if (body == 3)
+			cout << "Kombi" << endl;
+		else if (body == 4)
+			cout << "Kabriolet" << endl;
+		else if (body == 5)
+			cout << "Coupe" << endl;
+		else if (body == 6)
+			cout << "SUV" << endl;
+		else if (body == 7)
+			cout << "Terenowy" << endl;
+	}
+	if (fuel != 0)
+	{
+		cout << "Rodzaj paliwa: ";
+		if (fuel == 1)
+			cout << "Benzyna" << endl;
+		else if (fuel == 2)
+			cout << "Diesel" << endl;
+		else if (fuel == 3)
+			cout << "LPG" << endl;
+		else if (fuel == 4)
+			cout << "Elektryczny" << endl;
+		else if (fuel == 5)
+			cout << "Hybryda" << endl;
+	}
+	if (tra != 0)
+	{
+		cout << "Rodzaj skrzyni biegow: ";
+		if (tra == 1)
+			cout << "Manualna" << endl;
+		else if (tra == 2)
+			cout << "Automatyczna" << endl;
+	}
+	if (eng_min != 0 || eng_max != 0)
+		cout << "Pojemnosc silnika od: " << eng_min << " do: " << eng_max << " cm^3." << endl;
+	if (year_min != 0 || year_max != 0)
+		cout << "Rok produkcji od: " << year_min << " do: " << year_max << " roku. " << endl;
+	if (val_min != 0 || val_max != 0)
+		cout << "Wartosc od: " << val_min << " do: " << val_min << " zl." << endl;
 }
