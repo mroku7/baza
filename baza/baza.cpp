@@ -59,15 +59,16 @@ int main()
 				break;
 			}
 			int c = 0;
-			bool b = 0;
+			bool b = true;	
+			bool j = true;
 			vec[c].browsing();
-			for (;;)
-			{
-				for (;;)
+			do
+			{	
+				do
 				{
 					if (GetAsyncKeyState(VK_ESCAPE) & 1)
 					{
-						b = 1;
+						b = 0;
 						break;
 					}
 					if (GetAsyncKeyState(VK_UP) & 1)
@@ -94,145 +95,189 @@ int main()
 					}
 					if (GetAsyncKeyState(VK_DELETE) & 1)
 					{
+						bool del_flag = false;
 						cout << "\n\n\nCZY NA PEWNO CHCESZ USUNAC WYBRANY ELEMENT?" << endl;
-						cout << "1.TAK\n2.NIE" << endl;
-						int menu;
-						while (!(cin >> menu) || menu > 2 || menu == 0)
+						cout << "y/n" << endl;
+						do
 						{
-							cin.clear();
-							cin.ignore();
-							cout << "Podaj prawidlowa wartosc" << endl;
-						}
-						cin.sync();
-						if (menu == 1)
-						{
-							vec.erase(vec.begin() + c);
-							counter -= 1;
-							if (counter == 0)
+							while (_kbhit()) _getch();
+							char menu_del = _getch();
+							
+							switch (menu_del)
 							{
+							case 'y':
+							{
+								vec.erase(vec.begin() + c);
+								counter -= 1;
+								if (counter == 0)
+								{
+									system("CLS");
+									cout << "Brak elementow w bazie.";
+									Sleep(1500);
+									b = 0;
+									break;
+								}
+								if (c > 0) c -= 1;
 								system("CLS");
-								cout << "Brak elementow w bazie.";
-								Sleep(1500);
-								b = 1;
+								vec[c].browsing();
+								del_flag = false;
 								break;
 							}
-							if (c > 0) c -= 1;
-							system("CLS");
-							vec[c].browsing();
-						}
-						else
-						{
-							system("CLS");
-							vec[c].browsing();
-						}
+							case 'n':
+							{
+								system("CLS");
+								vec[c].browsing();
+								del_flag = false;
+								break;
+							}
+							default:
+							{
+								cin.clear();
+								cout << "Podaj prawidlowa wartosc" << endl;
+								del_flag = true;
+							}
+							} 
+						} while (del_flag);
+
 					}
 					if (GetAsyncKeyState(112) & 1)
 					{
 						cin.sync();
+						bool save_flag = false;
 						cout << "\n\n\nChcesz nadpisac aktualnie wczytana baze danych?" << endl;
-						cout << "1.TAK\n2.NIE" << endl;
-						while (_kbhit())
-							_getch();
-						int menu;
-						while (!(cin >> menu) || menu > 2 || menu == 0)
+						cout << "y/n?         a = anuluj" << endl;
+						do
 						{
-							cin.clear();
-							cin.ignore();
-							cout << "Podaj prawidlowa wartosc" << endl;
-						}
-						if (menu == 1)
-						{
-							fstream del(name_of_data, ios::out | ios::trunc);
-							del.close();
-							for (int i = 0; i < vec.size(); i++)
-								vec[i].save_to_file(name_of_data);
-							b = 1;
-							break;
-						}
-						else
-						{
-							string new_name;
-							while (cin.get() != '\n') continue;
-							cin.sync();
-							system("CLS");
-							cout << "Podaj nazwe nowej bazy: ";
-							getline(cin, new_name);
-							new_name.append(".xdd");
-							for (int i = 0; i < vec.size(); i++)
-								vec[i].save_to_file(new_name);
-							b = 1;
-							break;
-						}
+							while (_kbhit()) _getch();
+							char menu_save = _getch();
+							switch (menu_save)
+							{
+							case 'y':
+							{
+								fstream del(name_of_data, ios::out | ios::trunc);
+								del.close();
+								for (int i = 0; i < vec.size(); i++)
+									vec[i].save_to_file(name_of_data);
+								cout << "Zapisano!";
+								Sleep(2000);
+								b = false;
+								j = false;
+								save_flag = false;
+								break;
+							}
+							case 'n':
+							{
+								string new_name;
+								//while (cin.get() != '\n') continue;
+								cin.sync();
+								system("CLS");
+								cout << "Podaj nazwe nowej bazy: ";
+								getline(cin, new_name);
+								new_name.append(".xdd");
+								for (int i = 0; i < vec.size(); i++)
+									vec[i].save_to_file(new_name);
+								cout << "Zapisano!";
+								Sleep(2000);
+								b = false;
+								j = false;
+								save_flag = false;
+								break;
+							}
+							case 'a':
+							{
+								b = false;
+								j = false;
+								save_flag = false;
+								break;
+							}
+
+							default:
+							{
+								cin.clear();
+								cout << "Podaj prawidlowa wartosc" << endl;
+								save_flag = true;
+								break;
+							}
+							}
+						} while (save_flag);
 					}
-				}
-				if (b == 1)
-				{
-					b = 0;
-					while (_kbhit())
-						_getch();
-					break;
-				}
-			}
+					
+				}while (j);
+			}while (b);
 			break;
 		}
 		case '3':
 		{
-			system("CLS");
-			cout << "Prosze wybrac wartosc wg. ktorej sortowac." << endl;
-			cout << "1. Watrosc" << endl;
-			cout << "2. Rok produkcji" << endl;
-			cout << "3. Pojemnosc silnika" << endl;
-			cout << "4. Marka" << endl;
-			cout << "5. Model" << endl;
-			auto *comparator = &compare_by_value;
-			int menu;
-			while (!(cin >> menu) || menu > 5 || menu == 0)
+			bool sort_flag = true;
+			do
 			{
-				cin.clear();
-				cin.ignore();
-				cout << "Podaj prawidlowa wartosc" << endl;
-			}
-			if (menu == 1)
-			{
-				comparator = &compare_by_value;
-				sort(vec.begin(), vec.end(), comparator);
-				cout << "\n\nSortowanie zakonczone.";
-				Sleep(1000);
-				break;
-			}
-			else if (menu == 2)
-			{
-				comparator = &compare_by_year;
-				sort(vec.begin(), vec.end(), comparator);
-				cout << "\n\nSortowanie zakonczone.";
-				Sleep(1000);
-				break;
-			}
-			else if (menu == 3)
-			{
-				comparator = &compare_by_eng;
-				sort(vec.begin(), vec.end(), comparator);
-				cout << "\n\nSortowanie zakonczone.";
-				Sleep(1000);
-				break;
-			}
-			else if (menu == 4)
-			{
-				comparator = &compare_by_make;
-				sort(vec.begin(), vec.end(), comparator);
-				cout << "\n\nSortowanie zakonczone.";
-				Sleep(1000);
-				break;
-			}
-			else if (menu == 5)
-			{
-				comparator = &compare_by_model;
-				sort(vec.begin(), vec.end(), comparator);
-				cout << "\n\nSortowanie zakonczone.";
-				Sleep(1000);
-				break;
-			}
-			if (cin) cin.ignore(cin.rdbuf()->in_avail());
+				system("CLS");
+				cout << "Prosze wybrac wartosc wg. ktorej sortowac." << endl;
+				cout << "1. Watrosc" << endl;
+				cout << "2. Rok produkcji" << endl;
+				cout << "3. Pojemnosc silnika" << endl;
+				cout << "4. Marka" << endl;
+				cout << "5. Model" << endl;
+				auto *comparator = &compare_by_value;
+				while (_kbhit()) _getch();
+				char sort_menu = _getch();
+				switch (sort_menu)
+				{
+				case '1':
+				{
+					comparator = &compare_by_value;
+					sort(vec.begin(), vec.end(), comparator);
+					cout << "\n\nSortowanie zakonczone.";
+					Sleep(1000);
+					sort_flag = false;
+					break;
+				}
+				case '2':
+				{
+					comparator = &compare_by_year;
+					sort(vec.begin(), vec.end(), comparator);
+					cout << "\n\nSortowanie zakonczone.";
+					Sleep(1000);
+					sort_flag = false;
+					break;
+				}
+				case '3':
+				{
+					comparator = &compare_by_eng;
+					sort(vec.begin(), vec.end(), comparator);
+					cout << "\n\nSortowanie zakonczone.";
+					Sleep(1000);
+					sort_flag = false;
+					break;
+				}
+				case '4':
+				{
+					comparator = &compare_by_make;
+					sort(vec.begin(), vec.end(), comparator);
+					cout << "\n\nSortowanie zakonczone.";
+					Sleep(1000);
+					sort_flag = false;
+					break;
+				}
+				case '5':
+				{
+					comparator = &compare_by_model;
+					sort(vec.begin(), vec.end(), comparator);
+					cout << "\n\nSortowanie zakonczone.";
+					Sleep(1000);
+					sort_flag = false;
+					break;
+				}
+				default:
+				{
+					cin.clear();
+					cout << "Podaj prawidlowa wartosc" << endl;
+					Sleep(1500);
+					sort_flag = true;
+				}
+				}
+				if (cin) cin.ignore(cin.rdbuf()->in_avail());
+			} while (sort_flag);
 			break;
 		}
 		case '4':
@@ -475,6 +520,7 @@ int main()
 		default:
 		{
 			cout << "Nie ma takiej opcji w menu!";
+			while (_kbhit()) _getch();
 			Sleep(1500);
 		}
 		system("CLS");
@@ -562,9 +608,9 @@ void loading_from_file(int &cou, vector <Data> &vec, string name)
 		string line;
 		string mk;
 		string md;
-		char bt;
-		char fuel;
-		char tran;
+		int bt;
+		int fuel;
+		int tran;
 		int eng;
 		int year;
 		int val;

@@ -105,19 +105,19 @@ string Data::body_type(int nr)
 	string five = "Coupe";
 	string six = "SUV";
 	string seven = "Terenowy";
-	if (nr == '1')
+	if (nr == 1)
 		return one;
-	else if (nr == '2')
+	else if (nr == 2)
 		return two;
-	else if (nr == '3')
+	else if (nr == 3)
 		return three;
-	else if (nr == '4')
+	else if (nr == 4)
 		return four;
-	else if (nr == '5')
+	else if (nr == 5)
 		return five;
-	else if (nr == '6')
+	else if (nr == 6)
 		return six;
-	else if (nr == '7')
+	else if (nr == 7)
 		return seven;
 }
 
@@ -128,15 +128,15 @@ string Data::fuel(int nr)
 	string three = "LPG";
 	string four = "Elektryczny";
 	string five = "Hybryda";
-	if (nr == '1')
+	if (nr == 1)
 		return one;
-	else if (nr == '2')
+	else if (nr == 2)
 		return two;
-	else if (nr == '3')
+	else if (nr == 3)
 		return three;
-	else if (nr == '4')
+	else if (nr == 4)
 		return four;
-	else if (nr == '5')
+	else if (nr == 5)
 		return five;
 }
 
