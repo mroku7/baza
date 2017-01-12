@@ -1,15 +1,18 @@
 ﻿  baza.cpp
 f:\gicior\baza\baza\baza.cpp(159): warning C4018: '<': signed/unsigned mismatch
-f:\gicior\baza\baza\baza.cpp(177): warning C4018: '<': signed/unsigned mismatch
-f:\gicior\baza\baza\baza.cpp(678): warning C4018: '<': signed/unsigned mismatch
-f:\gicior\baza\baza\baza.cpp(681): warning C4018: '<': signed/unsigned mismatch
-f:\gicior\baza\baza\baza.cpp(713): warning C4018: '<': signed/unsigned mismatch
-f:\gicior\baza\baza\baza.cpp(716): warning C4018: '<': signed/unsigned mismatch
-f:\gicior\baza\baza\baza.cpp(747): warning C4018: '<': signed/unsigned mismatch
-f:\gicior\baza\baza\baza.cpp(772): warning C4018: '<': signed/unsigned mismatch
-f:\gicior\baza\baza\baza.cpp(797): warning C4018: '<': signed/unsigned mismatch
-f:\gicior\baza\baza\baza.cpp(822): warning C4018: '<': signed/unsigned mismatch
-f:\gicior\baza\baza\baza.cpp(847): warning C4018: '<': signed/unsigned mismatch
-f:\gicior\baza\baza\baza.cpp(872): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(176): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(821): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(824): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(856): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(859): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(890): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(915): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(940): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(965): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(990): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(1015): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  class.cpp
   baza.vcxproj -> F:\gicior\baza\Debug\baza.exe
   baza.vcxproj -> F:\gicior\baza\Debug\baza.pdb (Full PDB)

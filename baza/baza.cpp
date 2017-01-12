@@ -168,7 +168,6 @@ int main()
 							case 'n':
 							{
 								string new_name;
-								//while (cin.get() != '\n') continue;
 								cin.sync();
 								system("CLS");
 								cout << "Podaj nazwe nowej bazy: ";
@@ -190,7 +189,6 @@ int main()
 								save_flag = false;
 								break;
 							}
-
 							default:
 							{
 								cin.clear();
@@ -200,8 +198,7 @@ int main()
 							}
 							}
 						} while (save_flag);
-					}
-					
+					}			
 				}while (j);
 			}while (b);
 			break;
@@ -284,30 +281,50 @@ int main()
 		{
 			system("CLS");
 			cout << "Podaj nazwe pliku wraz z rozszerzeniem: " << endl;
+			bool save_flag = true;
 			string name;
 			getline(cin, name);
 			cout << "Wybierz:" << endl;
 			cout << "1. Nadpisz aktualnie istniejaca baze." << endl;
 			cout << "2. Dopisz do aktualnie istniejacej bazy." << endl;
 			cout << "3. Anuluj." << endl;
-			int menu;
-			while (!(cin >> menu) || menu > 3 || menu == 0)
+			do
 			{
-				cin.clear();
-				cin.ignore();
-				cout << "Podaj prawidlowa wartosc" << endl;
-			}
-			if (menu == 1)
-			{
-				vec.clear();
-				counter = 0;
-				loading_from_file(counter, vec, name);
-			}
-			else if (menu == 2)
-			{
-				loading_from_file(counter, vec, name);
-			}
-
+				while (_kbhit()) _getch();
+				char save_menu = _getch();
+				switch (save_menu)
+				{
+				case '1':
+				{
+					vec.clear();
+					counter = 0;
+					loading_from_file(counter, vec, name);
+					cout << "Nadpisano!";
+					Sleep(1500);
+					save_flag = false;
+					break;
+				}
+				case '2':
+				{
+					loading_from_file(counter, vec, name);
+					save_flag = false;
+					cout << "Dopisano!";
+					Sleep(1500);
+					break;
+				}
+				case '3':
+				{
+					save_flag = false;
+					break;
+				}
+				default:
+				{
+					cin.clear();
+					cout << "Podaj prawidlowa wartosc" << endl;
+					break;
+				}
+				}
+			} while (save_flag);
 			break;
 		}
 		case '5':
@@ -324,121 +341,234 @@ int main()
 				int s_value_min = 0;
 				int s_value_max = 0;
 				bool set = false;
-				for (;;)
+				bool filter_flag = true;
+				do
 				{
 					show_menu_wfilter(s_make, s_model, s_body_type, s_fuel, s_transmission, s_engine_size_min, s_engine_size_max, s_year_min, s_year_max, s_value_min, s_value_max);
-					int menu;
-					while (!(cin >> menu) || menu > 9)
+					while (_kbhit()) _getch();
+					char f_menu = _getch();
+					switch (f_menu)
 					{
-						cin.clear();
-						cin.ignore();
-						cout << "Podaj prawidlowa wartosc" << endl;
-					}
-					if (menu == 9)
+					case '0':
 					{
-						if (set)
-							searching(vec_s, vec,s_make, s_model, s_body_type, s_fuel, s_transmission, s_engine_size_min, s_engine_size_max, s_year_min, s_year_max, s_value_min, s_value_max, counter);
-						else
-						{
-							cout << "Nie ustawiono zadnych filtrow!";
-							Sleep(2000);
-							continue;
-						}
+						filter_flag = false;
+						system("CLS");
+						break;
 					}
-					else if (menu == 1)
+					case '1':
 					{
 						cout << "\n\n\nWpisz poszukiwana marke: ";
-						getline(cin, s_make);
+						while (_kbhit()) _getch();
 						getline(cin, s_make);
 						cout << "\nUstawiono filtr \"" << s_make << "\" dla marki.";
 						transform(s_make.begin(), s_make.end(), s_make.begin(), ::toupper);
 						set = true;
 						Sleep(2000);
+						break;
 					}
-					else if (menu == 2)
+					case '2':
 					{
 						cout << "\n\n\nWpisz poszukiwany model: ";
-						getline(cin, s_model);
+						while (_kbhit()) _getch();
 						getline(cin, s_model);
 						cout << "\nUstawiono filtr \"" << s_model << "\" dla modelu.";
 						transform(s_model.begin(), s_model.end(), s_model.begin(), ::toupper);
 						set = true;
 						Sleep(2000);
+						break;
 					}
-					else if (menu == 3)
+					case '3':
 					{
-						cout << "\n\n\nWybierz typ nadwozia: " << endl;
-						cout << "1.Hatchback  2.Sedan  3.Kombi 4.Kabriolet  5.Coupe  6.SUV  7.Terenowy" << endl;
-						while (!(cin >> s_body_type) || s_body_type > 7 || s_body_type == 0)
+						
+						bool body_flag = true;
+						do
 						{
-							cin.clear();
-							cin.ignore();
-							cout << "Podaj prawidlowa wartosc" << endl;
-						}
-						cout << "\nUstawiono filtr \"";
-						if (s_body_type == 1)
-							cout << "Hatchback";
-						else if (s_body_type == 2)
-							cout << "Sedan";
-						else if (s_body_type == 3)
-							cout << "Kombi";
-						else if (s_body_type == 4)
-							cout << "Kabriolet";
-						else if (s_body_type == 5)
-							cout << "Coupe";
-						else if (s_body_type == 6)
-							cout << "SUV";
-						else if (s_body_type == 7)
-							cout << "Terenowy";
+							cout << "\n\n\nWybierz typ nadwozia: " << endl;
+							cout << "1.Hatchback  2.Sedan  3.Kombi 4.Kabriolet  5.Coupe  6.SUV  7.Terenowy" << endl;
+							while (_kbhit()) _getch();
+							char body_menu = _getch();
+							cout << "\nUstawiono filtr \"";
+							switch (body_menu)
+							{
+							case '1':
+							{
+								cout << "Hatchback";
+								s_body_type = 1;
+								set = true;
+								body_flag = false;
+								break;
+							}
+							case '2':
+							{
+								cout << "Sedan";
+								s_body_type = 2;
+								set = true;
+								body_flag = false;
+								break;
+							}
+							case '3':
+							{
+								cout << "Kombi";
+								s_body_type = 3;
+								set = true;
+								body_flag = false;
+								break;
+							}
+							case '4':
+							{
+								cout << "Kabriolet";
+								s_body_type = 4;
+								set = true;
+								body_flag = false;
+								break;
+							}
+							case '5':
+							{
+								cout << "Coupe";
+								s_body_type = 5;
+								set = true;
+								body_flag = false;
+								break;
+							}
+							case '6':
+							{
+								cout << "SUV";
+								s_body_type = 6;
+								set = true;
+								body_flag = false;
+								break;
+							}
+							case '7':
+							{
+								cout << "Terenowy";
+								s_body_type = 7;
+								set = true;
+								body_flag = false;
+								break;
+							}
+							default:
+							{
+								system("CLS");
+								cin.clear();
+								cout << "Podaj prawidlowa wartosc" << endl;
+								break;
+							}
+							}
+
+						} while (body_flag);
 						cout << "\" dla typu nadwozia.";
-						set = true;
 						Sleep(2000);
+						break;
 					}
-					else if (menu == 4)
+					case '4':
 					{
-						cout << "\n\n\nWybierz rodzaj paliwa: " << endl;
-						cout << "1.Benzyna  2.Diesel  3.LPG  4.Elektryczny  5.Hybryda" << endl;
-						while (!(cin >> s_fuel) || s_fuel > 5 || s_fuel == 0)
+						bool fuel_flag = true;
+						do
 						{
-							cin.clear();
-							cin.ignore();
-							cout << "Podaj prawidlowa wartosc" << endl;
-						}
-						cout << "\nUstawiono filtr \"";
-						if (s_fuel == 1)
-							cout << "Benzyna";
-						else if (s_fuel == 2)
-							cout << "Diesel";
-						else if (s_fuel == 3)
-							cout << "LPG";
-						else if (s_fuel == 4)
-							cout << "Elektryczny";
-						else if (s_fuel == 5)
-							cout << "Hybryda";
+							cout << "\n\n\nWybierz rodzaj paliwa: " << endl;
+							cout << "1.Benzyna  2.Diesel  3.LPG  4.Elektryczny  5.Hybryda" << endl;
+							while (_kbhit()) _getch();
+							char fuel_menu = _getch();
+							cout << "\nUstawiono filtr \"";
+							switch (fuel_menu)
+							{
+							case '1':
+							{
+								cout << "Benzyna";
+								s_fuel = 1;
+								set = true;
+								fuel_flag = false;
+								break;
+							}
+							case '2':
+							{
+								cout << "Diesel";
+								s_fuel = 2;
+								set = true;
+								fuel_flag = false;
+								break;
+							}
+							case '3':
+							{
+								cout << "LPG";
+								s_fuel = 3;
+								set = true;
+								fuel_flag = false;
+								break;
+							}
+							case '4':
+							{
+								cout << "Elektryczny";
+								s_fuel = 4;
+								set = true;
+								fuel_flag = false;
+								break;
+							}
+							case '5':
+							{
+								cout << "Hybryda";
+								s_fuel = 5;
+								set = true;
+								fuel_flag = false;
+								break;
+							}
+							default:
+							{
+								system("CLS");
+								cin.clear();
+								cout << "Podaj prawidlowa wartosc" << endl;
+								break;
+							}
+							}
+
+						} while (fuel_flag);
 						cout << "\" dla rodzaju paliwa.";
-						set = true;
 						Sleep(2000);
+						break;
 					}
-					else if (menu == 5)
+					case '5':
 					{
-						cout << "\n\n\nWybierz typ skrzyni biegow: " << endl;
-						cout << "1.Manualna  2.Automatyczna" << endl;
-						while (!(cin >> s_transmission) || s_transmission > 2 || s_transmission == 0)
+						bool transmission_flag = true;
+						do
 						{
-							cin.clear();
-							cin.ignore();
-							cout << "Podaj prawidlowa wartosc" << endl;
-						}
-						cout << "\nUstawiono filtr \"";
-						if (s_transmission == 1)
-							cout << "Manualna";
-						else if (s_transmission == 2)
-							cout << "Automatyczna";
+							cout << "\n\n\nWybierz typ skrzyni biegow: " << endl;
+							cout << "1.Manualna  2.Automatyczna" << endl;
+							while (_kbhit()) _getch();
+							char transmission_menu = _getch();
+							cout << "\nUstawiono filtr \"";
+							switch (transmission_menu)
+							{
+							case '1':
+							{
+								cout << "Manualna";
+								s_transmission = 1;
+								set = true;
+								transmission_flag = false;
+								break;
+							}
+							case '2':
+							{
+								cout << "Automatyczna";
+								s_transmission = 2;
+								set = true;
+								transmission_flag = false;
+								break;
+							}
+
+							default:
+							{
+								system("CLS");
+								cin.clear();
+								cout << "Podaj prawidlowa wartosc" << endl;
+								break;
+							}
+							}
+						} while (transmission_flag);
 						cout << "\" dla typu skrzyni biegow.";
-						set = true;
 						Sleep(2000);
+						break;
 					}
-					else if (menu == 6)
+					case '6':
 					{
 						cout << "\n\n\nWpisz przedzial pojemnosci silnika (cm^3): " << endl;
 						cout << "Minimalna: ";
@@ -458,13 +588,13 @@ int main()
 						cout << "\nUstawiono przedzial pojemnosci silnika od " << s_engine_size_min << " do " << s_engine_size_max << " cm^3.";
 						set = true;
 						Sleep(2000);
-
+						break;
 					}
-					else if (menu == 7)
+					case '7':
 					{
 						cout << "\n\n\nWpisz zakres roku produkcji: " << endl;
 						cout << "Od: ";
-						while (!(cin >> s_year_min) || s_year_min <= 0)
+						while (!(cin >> s_year_min) || s_year_min < 0)
 						{
 							cin.clear();
 							cin.ignore();
@@ -480,13 +610,13 @@ int main()
 						cout << "\nUstawiono zakres roku produkcji od " << s_year_min << " do " << s_year_max << " r.";
 						set = true;
 						Sleep(2000);
-
+						break;
 					}
-					else if (menu == 8)
+					case '8':
 					{
 						cout << "\n\n\nWpisz zakres wartosci pojazdu: " << endl;
 						cout << "Od: ";
-						while (!(cin >> s_value_min) || s_value_min <= 0)
+						while (!(cin >> s_value_min) || s_value_min < 0)
 						{
 							cin.clear();
 							cin.ignore();
@@ -502,14 +632,28 @@ int main()
 						cout << "\nUstawiono zakres wartosci pojazdu od " << s_value_min << " do " << s_value_max << " zl.";
 						set = true;
 						Sleep(2000);
-
-					}
-					else if (menu == 0)
-					{
-						system("CLS");
 						break;
 					}
-				}
+					case '9':
+					{
+						if (set)
+							searching(vec_s, vec, s_make, s_model, s_body_type, s_fuel, s_transmission, s_engine_size_min, s_engine_size_max, s_year_min, s_year_max, s_value_min, s_value_max, counter);
+						else
+						{
+							cout << "Nie ustawiono zadnych filtrow!";
+							Sleep(2000);
+						}
+						break;
+					}
+					default:
+					{
+						cin.clear();
+						cout << "Podaj prawidlowa wartosc" << endl;
+						Sleep(1500);
+						break;
+					}
+					}
+				}while (filter_flag);
 			break;
 		}
 		case '6':
@@ -635,12 +779,11 @@ void loading_from_file(int &cou, vector <Data> &vec, string name)
 			load >> val;
 			vec.push_back(Data(mk, md, bt, fuel, tran, eng, year, val));
 		}
-
 	}
 	else
 	{
 		cout << "Nie uda³o sie zaloadowac bazy danych." << endl;
-		cout << "Czy chcesz kontynu³owac z pusta baza danych?" << endl;
+		cout << "Czy chcesz kontynuowac z pusta baza danych?" << endl;
 		cout << "1.TAK\n2.NIE" << endl;
 		int menu;
 		while (!(cin >> menu) || menu > 2 || menu == 0)
@@ -678,7 +821,7 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 			for (int i = 0; i < vector_s.size(); i++)
 			{
 				string make = vector_s[i].get_make();
-				for (int j = 0; j < make.length(); j++)
+				for (int j = 0; j < s_make.length(); j++)
 				{
 					if (s_make[j] != make[j])
 					{
@@ -713,7 +856,7 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 			for (int i = 0; i < vector_s.size(); i++)
 			{
 				string model = vector_s[i].get_model();
-				for (int j = 0; j < model.length(); j++)
+				for (int j = 0; j < s_model.length(); j++)
 				{
 					if (s_model[j] != model[j])
 					{
@@ -1009,5 +1152,5 @@ void show_menu_wfilter(string make, string model, int body, int fuel, int tra, i
 	if (year_min != 0 || year_max != 0)
 		cout << "Rok produkcji od: " << year_min << " do: " << year_max << " roku. " << endl;
 	if (val_min != 0 || val_max != 0)
-		cout << "Wartosc od: " << val_min << " do: " << val_min << " zl." << endl;
+		cout << "Wartosc od: " << val_min << " do: " << val_max << " zl." << endl;
 }
