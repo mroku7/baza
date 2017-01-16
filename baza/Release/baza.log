@@ -1,7 +1,24 @@
-﻿  Generating code
+﻿  stdafx.cpp
+  baza.cpp
+baza.cpp(159): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(176): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(821): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(824): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(856): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(859): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(890): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(915): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(940): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(965): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(990): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1015): warning C4018: '<': signed/unsigned mismatch
+  class.cpp
+  Generating code
 f:\gicior\baza\baza\class.cpp(141): warning C4715: 'Data::fuel': not all control paths return a value
 f:\gicior\baza\baza\class.cpp(122): warning C4715: 'Data::body_type': not all control paths return a value
-  All 408 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  605 of 724 functions (83.6%) were compiled, the rest were copied from previous compilation.
+    316 functions were new in current compilation
+    7 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   baza.vcxproj -> F:\gicior\baza\Release\baza.exe
   baza.vcxproj -> F:\gicior\baza\Release\baza.pdb (Full PDB)
