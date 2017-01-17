@@ -36,6 +36,14 @@ public:
 	int get_engine();
 	int get_year();
 	int get_value();
+	void set_make(string);
+	void set_model(string);
+	void set_body_type(int);
+	void set_fuel(int);
+	void set_transmission(int);
+	void set_engine_size(int);
+	void set_year(int);
+	void set_value(int);
 	friend bool compare_by_year(const Data &, const Data &);
 	friend bool compare_by_value(const Data &, const Data &);
 	friend bool compare_by_eng(const Data &, const Data &);

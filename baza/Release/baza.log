@@ -1,24 +1,20 @@
-﻿  stdafx.cpp
-  baza.cpp
+﻿  baza.cpp
 baza.cpp(159): warning C4018: '<': signed/unsigned mismatch
 baza.cpp(176): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(821): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(824): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(856): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(859): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(890): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(915): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(940): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(965): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(990): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(1015): warning C4018: '<': signed/unsigned mismatch
-  class.cpp
+baza.cpp(967): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(970): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1002): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1005): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1036): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1061): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1086): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1111): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1136): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1161): warning C4018: '<': signed/unsigned mismatch
   Generating code
-f:\gicior\baza\baza\class.cpp(141): warning C4715: 'Data::fuel': not all control paths return a value
-f:\gicior\baza\baza\class.cpp(122): warning C4715: 'Data::body_type': not all control paths return a value
-  605 of 724 functions (83.6%) were compiled, the rest were copied from previous compilation.
-    316 functions were new in current compilation
-    7 functions had inline decision re-evaluated but remain unchanged
+  1 of 732 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   baza.vcxproj -> F:\gicior\baza\Release\baza.exe
   baza.vcxproj -> F:\gicior\baza\Release\baza.pdb (Full PDB)

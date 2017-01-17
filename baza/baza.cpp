@@ -197,8 +197,154 @@ int main()
 								break;
 							}
 							}
-						} while (save_flag);
-					}			
+						} while (save_flag);	
+					}	
+					if (GetAsyncKeyState(114) & 1)
+					{
+						string e_make = " ";
+						string e_model = " ";
+						int e_body_type = 0;
+						int e_fuel = 0;
+						int e_transmission = 0;
+						int e_engine = 0;
+						int e_year = 0;
+						int e_value = 0;
+						system("CLS");
+						cout << "Wybierz ceche ktora chcesz edytowac:" << endl;
+						cout << "1. Marka." << endl;
+						cout << "2. Model." << endl;
+						cout << "3. Typ nadwozia." << endl;
+						cout << "4. Rodzaj paliwa." << endl;
+						cout << "5. Rodzaj skrzyni biegow." << endl;
+						cout << "6. Pojemnosc silnika." << endl;
+						cout << "7. Rok produkcji." << endl;
+						cout << "8. Wartosc." << endl;
+						while (_kbhit()) _getch();
+						char edit_menu = _getch();
+						switch (edit_menu)
+						{
+						case '1':
+						{
+							cout << "Podaj marke: ";
+							getline(cin, e_make);
+							transform(e_make.begin(), e_make.end(), e_make.begin(), ::toupper);
+							vec[c].set_make(e_make);
+							system("CLS");
+							b = false;
+							j = false;
+							break;
+						}
+						case '2':
+						{
+							cout << "Podaj model: ";
+							getline(cin, e_model);
+							transform(e_model.begin(), e_model.end(), e_model.begin(), ::toupper);
+							vec[c].set_model(e_model);
+							system("CLS");
+							b = false;
+							j = false;
+							break;
+						}
+						case '3':
+						{
+							cout << "Wybierz rodzaj nadwozia." << endl;
+							cout << "1.Hatchback  2.Sedan  3.Kombi 4.Kabriolet  5.Coupe  6.SUV  7.Terenowy" << endl;
+							while (!(cin >> e_body_type) || e_body_type > 7 || e_body_type == 0)
+							{
+								cin.clear();
+								cin.ignore();
+								cout << "Podaj prawidlowa wartosc" << endl;
+							}
+							vec[c].set_body_type(e_body_type);
+							system("CLS");
+							b = false;
+							j = false;
+							break;
+						}
+						case '4':
+						{
+							cout << "Wybierz rodzaj paliwa." << endl;
+							cout << "1.Benzyna  2.Diesel  3.LPG  4.Elektryczny  5.Hybryda" << endl;
+							while (!(cin >> e_fuel) || e_fuel > 5 || e_fuel == 0)
+							{
+								cin.clear();
+								cin.ignore();
+								cout << "Podaj prawidlowa wartosc" << endl;
+							}
+							vec[c].set_fuel(e_fuel);
+							system("CLS");
+							b = false;
+							j = false;
+							break;
+						}
+						case '5':
+						{
+							cout << "Wybierz typ skrzyni biegow." << endl;
+							cout << "1.Manualna  2.Automatyczna" << endl;
+							while (!(cin >> e_transmission) || e_transmission > 2 || e_transmission == 0)
+							{
+								cin.clear();
+								cin.ignore();
+								cout << "Podaj prawidlowa wartosc" << endl;
+							}
+							vec[c].set_transmission(e_transmission);
+							system("CLS");
+							b = false;
+							j = false;
+							break;
+						}
+						case '6':
+						{
+							cout << "Podaj pojemnosc silnika w cm^3: " << endl;
+							while (!(cin >> e_engine) || e_engine <= 0)
+							{
+								cin.clear();
+								cin.ignore();
+								cout << "Podaj prawidlowa wartosc" << endl;
+							}
+							cin.ignore();
+							vec[c].set_engine_size(e_engine);
+							system("CLS");
+							b = false;
+							j = false;
+							break;
+						}
+						case '7':
+						{
+							cout << "Podaj rok produkcji auta: " << endl;
+							while (!(cin >> e_year) || e_year <= 0)
+							{
+								cin.clear();
+								cin.ignore();
+								cout << "Podaj prawidlowa wartosc" << endl;
+							}
+							cin.ignore();
+							vec[c].set_year(e_year);
+							system("CLS");
+							b = false;
+							j = false;
+							break;
+						}
+						case '8':
+						{
+							cout << "Podaj wartosc auta w zl: " << endl;
+							while (!(cin >> e_value) || e_value <= 0)
+							{
+								cin.clear();
+								cin.ignore();
+								cout << "Podaj prawidlowa wartosc" << endl;
+							}
+							cin.ignore();
+							vec[c].set_value(e_value);
+							system("CLS");
+							b = false;
+							j = false;
+							break;
+						}
+						default:
+							break;
+						}
+					}
 				}while (j);
 			}while (b);
 			break;
@@ -328,332 +474,332 @@ int main()
 			break;
 		}
 		case '5':
-		{		
-				string s_make = " ";
-				string s_model = " ";
-				int s_body_type = 0;
-				int s_fuel = 0;
-				int s_transmission = 0;
-				int s_engine_size_min = 0;
-				int s_engine_size_max = 0;
-				int s_year_min = 0;
-				int s_year_max = 0;
-				int s_value_min = 0;
-				int s_value_max = 0;
-				bool set = false;
-				bool filter_flag = true;
-				do
+		{
+			string s_make = " ";
+			string s_model = " ";
+			int s_body_type = 0;
+			int s_fuel = 0;
+			int s_transmission = 0;
+			int s_engine_size_min = 0;
+			int s_engine_size_max = 0;
+			int s_year_min = 0;
+			int s_year_max = 0;
+			int s_value_min = 0;
+			int s_value_max = 0;
+			bool set = false;
+			bool filter_flag = true;
+			do
+			{
+				show_menu_wfilter(s_make, s_model, s_body_type, s_fuel, s_transmission, s_engine_size_min, s_engine_size_max, s_year_min, s_year_max, s_value_min, s_value_max);
+				while (_kbhit()) _getch();
+				char f_menu = _getch();
+				switch (f_menu)
 				{
-					show_menu_wfilter(s_make, s_model, s_body_type, s_fuel, s_transmission, s_engine_size_min, s_engine_size_max, s_year_min, s_year_max, s_value_min, s_value_max);
+				case '0':
+				{
+					filter_flag = false;
+					system("CLS");
+					break;
+				}
+				case '1':
+				{
+					cout << "\n\n\nWpisz poszukiwana marke: ";
 					while (_kbhit()) _getch();
-					char f_menu = _getch();
-					switch (f_menu)
+					getline(cin, s_make);
+					cout << "\nUstawiono filtr \"" << s_make << "\" dla marki.";
+					transform(s_make.begin(), s_make.end(), s_make.begin(), ::toupper);
+					set = true;
+					Sleep(2000);
+					break;
+				}
+				case '2':
+				{
+					cout << "\n\n\nWpisz poszukiwany model: ";
+					while (_kbhit()) _getch();
+					getline(cin, s_model);
+					cout << "\nUstawiono filtr \"" << s_model << "\" dla modelu.";
+					transform(s_model.begin(), s_model.end(), s_model.begin(), ::toupper);
+					set = true;
+					Sleep(2000);
+					break;
+				}
+				case '3':
+				{
+
+					bool body_flag = true;
+					do
 					{
-					case '0':
-					{
-						filter_flag = false;
-						system("CLS");
-						break;
-					}
-					case '1':
-					{
-						cout << "\n\n\nWpisz poszukiwana marke: ";
+						cout << "\n\n\nWybierz typ nadwozia: " << endl;
+						cout << "1.Hatchback  2.Sedan  3.Kombi 4.Kabriolet  5.Coupe  6.SUV  7.Terenowy" << endl;
 						while (_kbhit()) _getch();
-						getline(cin, s_make);
-						cout << "\nUstawiono filtr \"" << s_make << "\" dla marki.";
-						transform(s_make.begin(), s_make.end(), s_make.begin(), ::toupper);
-						set = true;
-						Sleep(2000);
-						break;
-					}
-					case '2':
+						char body_menu = _getch();
+						cout << "\nUstawiono filtr \"";
+						switch (body_menu)
+						{
+						case '1':
+						{
+							cout << "Hatchback";
+							s_body_type = 1;
+							set = true;
+							body_flag = false;
+							break;
+						}
+						case '2':
+						{
+							cout << "Sedan";
+							s_body_type = 2;
+							set = true;
+							body_flag = false;
+							break;
+						}
+						case '3':
+						{
+							cout << "Kombi";
+							s_body_type = 3;
+							set = true;
+							body_flag = false;
+							break;
+						}
+						case '4':
+						{
+							cout << "Kabriolet";
+							s_body_type = 4;
+							set = true;
+							body_flag = false;
+							break;
+						}
+						case '5':
+						{
+							cout << "Coupe";
+							s_body_type = 5;
+							set = true;
+							body_flag = false;
+							break;
+						}
+						case '6':
+						{
+							cout << "SUV";
+							s_body_type = 6;
+							set = true;
+							body_flag = false;
+							break;
+						}
+						case '7':
+						{
+							cout << "Terenowy";
+							s_body_type = 7;
+							set = true;
+							body_flag = false;
+							break;
+						}
+						default:
+						{
+							system("CLS");
+							cin.clear();
+							cout << "Podaj prawidlowa wartosc" << endl;
+							break;
+						}
+						}
+
+					} while (body_flag);
+					cout << "\" dla typu nadwozia.";
+					Sleep(2000);
+					break;
+				}
+				case '4':
+				{
+					bool fuel_flag = true;
+					do
 					{
-						cout << "\n\n\nWpisz poszukiwany model: ";
+						cout << "\n\n\nWybierz rodzaj paliwa: " << endl;
+						cout << "1.Benzyna  2.Diesel  3.LPG  4.Elektryczny  5.Hybryda" << endl;
 						while (_kbhit()) _getch();
-						getline(cin, s_model);
-						cout << "\nUstawiono filtr \"" << s_model << "\" dla modelu.";
-						transform(s_model.begin(), s_model.end(), s_model.begin(), ::toupper);
-						set = true;
-						Sleep(2000);
-						break;
-					}
-					case '3':
-					{
-						
-						bool body_flag = true;
-						do
+						char fuel_menu = _getch();
+						cout << "\nUstawiono filtr \"";
+						switch (fuel_menu)
 						{
-							cout << "\n\n\nWybierz typ nadwozia: " << endl;
-							cout << "1.Hatchback  2.Sedan  3.Kombi 4.Kabriolet  5.Coupe  6.SUV  7.Terenowy" << endl;
-							while (_kbhit()) _getch();
-							char body_menu = _getch();
-							cout << "\nUstawiono filtr \"";
-							switch (body_menu)
-							{
-							case '1':
-							{
-								cout << "Hatchback";
-								s_body_type = 1;
-								set = true;
-								body_flag = false;
-								break;
-							}
-							case '2':
-							{
-								cout << "Sedan";
-								s_body_type = 2;
-								set = true;
-								body_flag = false;
-								break;
-							}
-							case '3':
-							{
-								cout << "Kombi";
-								s_body_type = 3;
-								set = true;
-								body_flag = false;
-								break;
-							}
-							case '4':
-							{
-								cout << "Kabriolet";
-								s_body_type = 4;
-								set = true;
-								body_flag = false;
-								break;
-							}
-							case '5':
-							{
-								cout << "Coupe";
-								s_body_type = 5;
-								set = true;
-								body_flag = false;
-								break;
-							}
-							case '6':
-							{
-								cout << "SUV";
-								s_body_type = 6;
-								set = true;
-								body_flag = false;
-								break;
-							}
-							case '7':
-							{
-								cout << "Terenowy";
-								s_body_type = 7;
-								set = true;
-								body_flag = false;
-								break;
-							}
-							default:
-							{
-								system("CLS");
-								cin.clear();
-								cout << "Podaj prawidlowa wartosc" << endl;
-								break;
-							}
-							}
+						case '1':
+						{
+							cout << "Benzyna";
+							s_fuel = 1;
+							set = true;
+							fuel_flag = false;
+							break;
+						}
+						case '2':
+						{
+							cout << "Diesel";
+							s_fuel = 2;
+							set = true;
+							fuel_flag = false;
+							break;
+						}
+						case '3':
+						{
+							cout << "LPG";
+							s_fuel = 3;
+							set = true;
+							fuel_flag = false;
+							break;
+						}
+						case '4':
+						{
+							cout << "Elektryczny";
+							s_fuel = 4;
+							set = true;
+							fuel_flag = false;
+							break;
+						}
+						case '5':
+						{
+							cout << "Hybryda";
+							s_fuel = 5;
+							set = true;
+							fuel_flag = false;
+							break;
+						}
+						default:
+						{
+							system("CLS");
+							cin.clear();
+							cout << "Podaj prawidlowa wartosc" << endl;
+							break;
+						}
+						}
 
-						} while (body_flag);
-						cout << "\" dla typu nadwozia.";
-						Sleep(2000);
-						break;
-					}
-					case '4':
+					} while (fuel_flag);
+					cout << "\" dla rodzaju paliwa.";
+					Sleep(2000);
+					break;
+				}
+				case '5':
+				{
+					bool transmission_flag = true;
+					do
 					{
-						bool fuel_flag = true;
-						do
+						cout << "\n\n\nWybierz typ skrzyni biegow: " << endl;
+						cout << "1.Manualna  2.Automatyczna" << endl;
+						while (_kbhit()) _getch();
+						char transmission_menu = _getch();
+						cout << "\nUstawiono filtr \"";
+						switch (transmission_menu)
 						{
-							cout << "\n\n\nWybierz rodzaj paliwa: " << endl;
-							cout << "1.Benzyna  2.Diesel  3.LPG  4.Elektryczny  5.Hybryda" << endl;
-							while (_kbhit()) _getch();
-							char fuel_menu = _getch();
-							cout << "\nUstawiono filtr \"";
-							switch (fuel_menu)
-							{
-							case '1':
-							{
-								cout << "Benzyna";
-								s_fuel = 1;
-								set = true;
-								fuel_flag = false;
-								break;
-							}
-							case '2':
-							{
-								cout << "Diesel";
-								s_fuel = 2;
-								set = true;
-								fuel_flag = false;
-								break;
-							}
-							case '3':
-							{
-								cout << "LPG";
-								s_fuel = 3;
-								set = true;
-								fuel_flag = false;
-								break;
-							}
-							case '4':
-							{
-								cout << "Elektryczny";
-								s_fuel = 4;
-								set = true;
-								fuel_flag = false;
-								break;
-							}
-							case '5':
-							{
-								cout << "Hybryda";
-								s_fuel = 5;
-								set = true;
-								fuel_flag = false;
-								break;
-							}
-							default:
-							{
-								system("CLS");
-								cin.clear();
-								cout << "Podaj prawidlowa wartosc" << endl;
-								break;
-							}
-							}
+						case '1':
+						{
+							cout << "Manualna";
+							s_transmission = 1;
+							set = true;
+							transmission_flag = false;
+							break;
+						}
+						case '2':
+						{
+							cout << "Automatyczna";
+							s_transmission = 2;
+							set = true;
+							transmission_flag = false;
+							break;
+						}
 
-						} while (fuel_flag);
-						cout << "\" dla rodzaju paliwa.";
-						Sleep(2000);
-						break;
-					}
-					case '5':
-					{
-						bool transmission_flag = true;
-						do
+						default:
 						{
-							cout << "\n\n\nWybierz typ skrzyni biegow: " << endl;
-							cout << "1.Manualna  2.Automatyczna" << endl;
-							while (_kbhit()) _getch();
-							char transmission_menu = _getch();
-							cout << "\nUstawiono filtr \"";
-							switch (transmission_menu)
-							{
-							case '1':
-							{
-								cout << "Manualna";
-								s_transmission = 1;
-								set = true;
-								transmission_flag = false;
-								break;
-							}
-							case '2':
-							{
-								cout << "Automatyczna";
-								s_transmission = 2;
-								set = true;
-								transmission_flag = false;
-								break;
-							}
-
-							default:
-							{
-								system("CLS");
-								cin.clear();
-								cout << "Podaj prawidlowa wartosc" << endl;
-								break;
-							}
-							}
-						} while (transmission_flag);
-						cout << "\" dla typu skrzyni biegow.";
-						Sleep(2000);
-						break;
-					}
-					case '6':
-					{
-						cout << "\n\n\nWpisz przedzial pojemnosci silnika (cm^3): " << endl;
-						cout << "Minimalna: ";
-						while (!(cin >> s_engine_size_min) || s_engine_size_min < 0)
-						{
+							system("CLS");
 							cin.clear();
-							cin.ignore();
 							cout << "Podaj prawidlowa wartosc" << endl;
+							break;
 						}
-						cout << "Maksmyalna: ";
-						while (!(cin >> s_engine_size_max) || s_engine_size_min > s_engine_size_max)
-						{
-							cin.clear();
-							cin.ignore();
-							cout << "Podaj prawidlowa wartosc" << endl;
 						}
-						cout << "\nUstawiono przedzial pojemnosci silnika od " << s_engine_size_min << " do " << s_engine_size_max << " cm^3.";
-						set = true;
-						Sleep(2000);
-						break;
-					}
-					case '7':
-					{
-						cout << "\n\n\nWpisz zakres roku produkcji: " << endl;
-						cout << "Od: ";
-						while (!(cin >> s_year_min) || s_year_min < 0)
-						{
-							cin.clear();
-							cin.ignore();
-							cout << "Podaj prawidlowa wartosc" << endl;
-						}
-						cout << "Do: ";
-						while (!(cin >> s_year_max) || s_year_min > s_year_max)
-						{
-							cin.clear();
-							cin.ignore();
-							cout << "Podaj prawidlowa wartosc" << endl;
-						}
-						cout << "\nUstawiono zakres roku produkcji od " << s_year_min << " do " << s_year_max << " r.";
-						set = true;
-						Sleep(2000);
-						break;
-					}
-					case '8':
-					{
-						cout << "\n\n\nWpisz zakres wartosci pojazdu: " << endl;
-						cout << "Od: ";
-						while (!(cin >> s_value_min) || s_value_min < 0)
-						{
-							cin.clear();
-							cin.ignore();
-							cout << "Podaj prawidlowa wartosc" << endl;
-						}
-						cout << "Do: ";
-						while (!(cin >> s_value_max) || s_value_min > s_value_max)
-						{
-							cin.clear();
-							cin.ignore();
-							cout << "Podaj prawidlowa wartosc" << endl;
-						}
-						cout << "\nUstawiono zakres wartosci pojazdu od " << s_value_min << " do " << s_value_max << " zl.";
-						set = true;
-						Sleep(2000);
-						break;
-					}
-					case '9':
-					{
-						if (set)
-							searching(vec_s, vec, s_make, s_model, s_body_type, s_fuel, s_transmission, s_engine_size_min, s_engine_size_max, s_year_min, s_year_max, s_value_min, s_value_max, counter);
-						else
-						{
-							cout << "Nie ustawiono zadnych filtrow!";
-							Sleep(2000);
-						}
-						break;
-					}
-					default:
+					} while (transmission_flag);
+					cout << "\" dla typu skrzyni biegow.";
+					Sleep(2000);
+					break;
+				}
+				case '6':
+				{
+					cout << "\n\n\nWpisz przedzial pojemnosci silnika (cm^3): " << endl;
+					cout << "Minimalna: ";
+					while (!(cin >> s_engine_size_min) || s_engine_size_min < 0)
 					{
 						cin.clear();
+						cin.ignore();
 						cout << "Podaj prawidlowa wartosc" << endl;
-						Sleep(1500);
-						break;
 					}
+					cout << "Maksmyalna: ";
+					while (!(cin >> s_engine_size_max) || s_engine_size_min > s_engine_size_max)
+					{
+						cin.clear();
+						cin.ignore();
+						cout << "Podaj prawidlowa wartosc" << endl;
 					}
-				}while (filter_flag);
+					cout << "\nUstawiono przedzial pojemnosci silnika od " << s_engine_size_min << " do " << s_engine_size_max << " cm^3.";
+					set = true;
+					Sleep(2000);
+					break;
+				}
+				case '7':
+				{
+					cout << "\n\n\nWpisz zakres roku produkcji: " << endl;
+					cout << "Od: ";
+					while (!(cin >> s_year_min) || s_year_min < 0)
+					{
+						cin.clear();
+						cin.ignore();
+						cout << "Podaj prawidlowa wartosc" << endl;
+					}
+					cout << "Do: ";
+					while (!(cin >> s_year_max) || s_year_min > s_year_max)
+					{
+						cin.clear();
+						cin.ignore();
+						cout << "Podaj prawidlowa wartosc" << endl;
+					}
+					cout << "\nUstawiono zakres roku produkcji od " << s_year_min << " do " << s_year_max << " r.";
+					set = true;
+					Sleep(2000);
+					break;
+				}
+				case '8':
+				{
+					cout << "\n\n\nWpisz zakres wartosci pojazdu: " << endl;
+					cout << "Od: ";
+					while (!(cin >> s_value_min) || s_value_min < 0)
+					{
+						cin.clear();
+						cin.ignore();
+						cout << "Podaj prawidlowa wartosc" << endl;
+					}
+					cout << "Do: ";
+					while (!(cin >> s_value_max) || s_value_min > s_value_max)
+					{
+						cin.clear();
+						cin.ignore();
+						cout << "Podaj prawidlowa wartosc" << endl;
+					}
+					cout << "\nUstawiono zakres wartosci pojazdu od " << s_value_min << " do " << s_value_max << " zl.";
+					set = true;
+					Sleep(2000);
+					break;
+				}
+				case '9':
+				{
+					if (set)
+						searching(vec_s, vec, s_make, s_model, s_body_type, s_fuel, s_transmission, s_engine_size_min, s_engine_size_max, s_year_min, s_year_max, s_value_min, s_value_max, counter);
+					else
+					{
+						cout << "Nie ustawiono zadnych filtrow!";
+						Sleep(2000);
+					}
+					break;
+				}
+				default:
+				{
+					cin.clear();
+					cout << "Podaj prawidlowa wartosc" << endl;
+					Sleep(1500);
+					break;
+				}
+				}
+			} while (filter_flag);
 			break;
 		}
 		case '6':
@@ -695,7 +841,7 @@ void get_data(string &make, string &model, int &body_type, int &fuel, int &trans
 	transform(model.begin(), model.end(), model.begin(), ::toupper);
 	cout << "Wybierz rodzaj nadwozia." << endl;
 	cout << "1.Hatchback  2.Sedan  3.Kombi 4.Kabriolet  5.Coupe  6.SUV  7.Terenowy"<<endl;
-	while (!(cin>>body_type) || body_type > '7' || body_type == '0')
+	while (!(cin>>body_type) || body_type > 7 || body_type == 0)
 	{
 		cin.clear();
 		cin.ignore();
@@ -703,7 +849,7 @@ void get_data(string &make, string &model, int &body_type, int &fuel, int &trans
 	}
 	cout << "Wybierz rodzaj paliwa." << endl;
 	cout << "1.Benzyna  2.Diesel  3.LPG  4.Elektryczny  5.Hybryda" << endl;
-	while (!(cin >> fuel) || fuel > '5' || fuel == '0')
+	while (!(cin >> fuel) || fuel > 5 || fuel == 0)
 	{
 		cin.clear();
 		cin.ignore();
@@ -711,14 +857,14 @@ void get_data(string &make, string &model, int &body_type, int &fuel, int &trans
 	}
 	cout << "Wybierz typ skrzyni biegow." << endl;
 	cout << "1.Manualna  2.Automatyczna" << endl;
-	while (!(cin >> transmission) || transmission > '2' || transmission == '0')
+	while (!(cin >> transmission) || transmission > 2 || transmission == 0)
 	{
 		cin.clear();
 		cin.ignore();
 		cout << "Podaj prawidlowa wartosc" << endl;
 	}
 	cout << "Podaj pojemnosc silnika w cm^3: " << endl;
-	while (!(cin >> engine_size))
+	while (!(cin >> engine_size) || engine_size <= 0)
 	{
 		cin.clear();
 		cin.ignore();
@@ -726,7 +872,7 @@ void get_data(string &make, string &model, int &body_type, int &fuel, int &trans
 	}
 	cin.ignore();
 	cout << "Podaj rok produkcji auta: " << endl;
-	while (!(cin >> year))
+	while (!(cin >> year) || year <= 0)
 	{
 		cin.clear();
 		cin.ignore();
@@ -734,7 +880,7 @@ void get_data(string &make, string &model, int &body_type, int &fuel, int &trans
 	}
 	cin.ignore();
 	cout << "Podaj wartosc auta w zl: " << endl;
-	while (!(cin >> value))
+	while (!(cin >> value) || value <= 0)
 	{
 		cin.clear();
 		cin.ignore();
@@ -889,7 +1035,7 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 		{
 			for (int i = 0; i < vector_s.size(); i++)
 			{
-				int body = (vector_s[i].get_body())-48;
+				int body = vector_s[i].get_body();
 				if (s_body != body)
 				{
 					vector_s.erase(vector_s.begin() + i);
@@ -914,7 +1060,7 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 		{
 			for (int i = 0; i < vector_s.size(); i++)
 			{
-				int fuel = (vector_s[i].get_fuel()) - 48;
+				int fuel = vector_s[i].get_fuel();
 				if (s_fuel != fuel)
 				{
 					vector_s.erase(vector_s.begin() + i);
@@ -939,7 +1085,7 @@ void searching(vector <Data>& vector_s, vector<Data> vec, string s_make, string 
 		{
 			for (int i = 0; i < vector_s.size(); i++)
 			{
-				int transmission = (vector_s[i].get_transmission()) - 48;
+				int transmission = vector_s[i].get_transmission();
 				if (s_transmission != transmission)
 				{
 					vector_s.erase(vector_s.begin() + i);

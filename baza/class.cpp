@@ -75,7 +75,7 @@ void Data::browsing()
 	cout << "Wartosc: " << "\t\t" << m_value << " zl" << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
 	cout << "^-strzalka w gore = poprzedni    v-strzalka w dol = nastepny" << endl;
 	cout << "ESC = wyjscie                   DELETE = usun wybrany element" << endl;
-	cout << "F1 = zapisz";
+	cout << "F1 = zapisz                     F2 = aktualizacja danych";
 }
 
 void Data::browsing_wfilter()
@@ -193,4 +193,46 @@ int Data::get_year()
 int Data::get_value()
 {
 	return m_value;
+}
+
+
+
+void Data::set_make(string  e_make)
+{
+	m_make = e_make;
+}
+
+void Data::set_model(string e_model)
+{
+	m_model = e_model;
+}
+
+void Data::set_body_type(int nr)
+{
+	m_body_type = nr;
+}
+
+void Data::set_fuel(int nr)
+{
+	m_fuel = nr;
+}
+
+void Data::set_transmission(int nr)
+{
+	m_transmission = nr;
+}
+
+void Data::set_engine_size(int nr)
+{
+	m_engine_size = nr;
+}
+
+void Data::set_year(int nr)
+{
+	m_year = nr;
+}
+
+void Data::set_value(int nr)
+{
+	m_value = nr;
 }
