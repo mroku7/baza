@@ -11,13 +11,13 @@ baza.cpp(1113): warning C4018: '<': signed/unsigned mismatch
 baza.cpp(1138): warning C4018: '<': signed/unsigned mismatch
 baza.cpp(1163): warning C4018: '<': signed/unsigned mismatch
 baza.cpp(1188): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(1431): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-baza.cpp(1442): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(1491): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1430): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+baza.cpp(1441): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1490): warning C4018: '<': signed/unsigned mismatch
   Generating code
-  3 of 753 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+  2 of 753 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    3 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   baza.vcxproj -> F:\gicior\baza\Release\baza.exe
   baza.vcxproj -> F:\gicior\baza\Release\baza.pdb (Full PDB)

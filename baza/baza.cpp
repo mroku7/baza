@@ -1409,11 +1409,11 @@ void save(string a)
 string get_path()
 {
 	string pt;
-	char *pPath;
+	char *p_Path;
 	size_t sz = 0;
-	if (_dupenv_s(&pPath, &sz, "USERPROFILE") == 0)
+	if (_dupenv_s(&p_Path, &sz, "USERPROFILE") == 0)
 	{
-		pt = pPath;
+		pt = p_Path;
 		pt.append("\\database.conf");
 		return pt;
 	}
