@@ -1,18 +1,21 @@
 ﻿  baza.cpp
-baza.cpp(159): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(176): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(967): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(970): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(1002): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(1005): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(1036): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(1061): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(1086): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(1111): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(1136): warning C4018: '<': signed/unsigned mismatch
-baza.cpp(1161): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(179): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(196): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(994): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(997): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1029): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1032): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1063): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1088): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1113): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1138): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1163): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1188): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1431): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+baza.cpp(1442): warning C4018: '<': signed/unsigned mismatch
+baza.cpp(1491): warning C4018: '<': signed/unsigned mismatch
   Generating code
-  1 of 732 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  3 of 753 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
