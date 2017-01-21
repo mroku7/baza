@@ -1,2 +1,22 @@
-﻿  baza.vcxproj -> F:\gicior\baza\Debug\baza.exe
+﻿  class.cpp
+  baza.cpp
+f:\gicior\baza\baza\baza.cpp(179): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(196): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(994): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(997): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(1029): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(1032): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(1063): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(1088): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(1113): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(1138): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(1163): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(1188): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(1430): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+f:\gicior\baza\baza\baza.cpp(1441): warning C4018: '<': signed/unsigned mismatch
+f:\gicior\baza\baza\baza.cpp(1490): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+f:\gicior\baza\baza\class.cpp(122): warning C4715: 'Data::body_type': not all control paths return a value
+f:\gicior\baza\baza\class.cpp(141): warning C4715: 'Data::fuel': not all control paths return a value
+  baza.vcxproj -> F:\gicior\baza\Debug\baza.exe
   baza.vcxproj -> F:\gicior\baza\Debug\baza.pdb (Full PDB)

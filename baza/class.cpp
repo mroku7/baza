@@ -75,7 +75,7 @@ void Data::browsing()
 	cout << "Wartosc: " << "\t\t" << m_value << " zl" << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl;
 	cout << "^-strzalka w gore = poprzedni    v-strzalka w dol = nastepny" << endl;
 	cout << "ESC = wyjscie                   DELETE = usun wybrany element" << endl;
-	cout << "F1 = zapisz                     F2 = aktualizacja danych";
+	cout << "F1 = zapisz                     F3 = aktualizacja danych";
 }
 
 void Data::browsing_wfilter()
